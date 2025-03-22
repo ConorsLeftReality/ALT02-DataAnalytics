@@ -1,21 +1,26 @@
-**ALT02-DataAnalytics**
-**tive Learning Task for Leaving Cert, based on the python modules Pandas and Plotly, for use with .csv files**
+#**ALT02-DataAnalytics**
+#**Active Learning Task for Leaving Cert, based on the python modules Pandas and Plotly, for use with .csv files**
 
 Based on *'The AI, ML, Data Science Salary (2020- 2025)'* dataset by Samith Chimminiyan,
 under the CC0: Public Domain License on Kaggle
 https://www.kaggle.com/datasets/samithsachidanandan/the-global-ai-ml-data-science-salary-for-2025
 
-**Task Requirements:**
-
+#**Task Requirements:**
 Your program must sucessfully read in information from your external dataset
+
 Your data must be cleaned to make sure its in a usable format
+
 Your program must display some statistical information about some of the data i.e. the mean, mode, median and range of some of the data (graphical and non graphical results, useful for users on non-graphical Operating Systems)
+
 You create one graph based on your analysis of your chosen dataset (plotly)
+
 The user can choose which part of the dataset th get statistics about (User Defined Graphs?)
+
 The user has a choice of what type of statistics they get (menu?)
+
 The program can present multiple graphs based on the users's choice (i am assuming at one time)
- 
-**Non Graphical Data to display:**
+
+#**Non Graphical Data to display:**
 Mean:
   1. Mean salary by title
   2. Mean salary by country
@@ -37,7 +42,7 @@ Range:
   3. Range of Pay by User Defined Title (Prints list)
   4. Range of Pay by User Defined Experience (Prints list)
  
-**Graphical data to display:**
+#**Graphical data to display:**
   Standard Results
   1. average salary by title
   2. average salary by country
