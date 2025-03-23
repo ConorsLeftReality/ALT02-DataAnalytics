@@ -1,0 +1,284 @@
+Pandas Unique Data, used to make lists for user inputs
+
+generation of this file can be found at the bottom of dataModule.py, just make sure to back this one up somewhere else or under a different name
+
+Job Titles
+
+['Customer Success Manager' 'Engineer' 'Applied Scientist' 'Data Analyst'
+ 'Software Development Engineer' 'Research Scientist' 'Data Scientist'
+ 'Platform Engineer' 'Computational Biologist' 'AI Data Scientist'
+ 'Admin & Data Analyst' 'Cloud Engineer' 'Data Management Specialist'
+ 'Data Product Owner' 'Software Engineer' 'Machine Learning Engineer'
+ 'Associate' 'Data Engineer' 'Product Manager' 'Data Operations Engineer'
+ 'Business Intelligence Engineer' 'Research Engineer' 'Analytics Engineer'
+ 'Analyst' 'Actuarial Analyst' 'Manager' 'Architect' 'Software Developer'
+ 'Member of Technical Staff' 'BI Analyst' 'AI Engineer'
+ 'Data Governance Analyst' 'Developer' 'DevOps Engineer'
+ 'Business Intelligence Analyst' 'Site Reliability Engineer'
+ 'Computational Scientist' 'Data Management Analyst'
+ 'Data and Reporting Analyst' 'Solution Architect'
+ 'Data Reporting Analyst' 'Data Architect' 'Solutions Architect'
+ 'Data Manager' 'Data Reporter' 'Data Governance'
+ 'Business Intelligence Developer' 'Solutions Engineer'
+ 'Database Administrator' 'Consultant' 'Product Analyst' 'Data Specialist'
+ 'Quantitative Developer' 'Research Assistant' 'BI Developer'
+ 'Quantitative Researcher' 'Product Designer' 'Machine Learning Scientist'
+ 'Research Associate' 'Product Owner' 'Insight Analyst' 'Statistician'
+ 'Engineering Manager' 'Data Analytics Manager' 'Data Modeler'
+ 'Systems Engineer' 'Data Platform Engineer' 'Technical Lead'
+ 'Bioinformatician' 'AI Researcher' 'Data Developer'
+ 'Quantitative Analyst' 'Head of AI' 'Lead Engineer' 'Prompt Engineer'
+ 'Data Visualization Analyst' 'Python Developer' 'Analytics Specialist'
+ 'Full Stack Developer' 'Head of Data' 'AI Governance Lead'
+ 'Director of Machine Learning' 'AI Architect'
+ 'Enterprise Account Executive' 'Backend Engineer' 'DataOps Engineer'
+ 'Data Governance Specialist' 'System Engineer'
+ 'Data Visualization Engineer' 'AI Developer' 'Data Governance Lead'
+ 'Business Analyst' 'Tableau Developer' 'Computer Vision Engineer'
+ 'Account Executive' 'Product Specialist' 'Data Governance Manager'
+ 'Business Intelligence' 'Data Operations' 'Data Strategist'
+ 'Data Quality Specialist' 'Data and Reporting Professional'
+ 'Robotics Engineer' 'Cloud Database Engineer' 'Data Integration Engineer'
+ 'Principal Researcher' 'Research Analyst' 'AI Data Engineer'
+ 'ETL Developer' 'Bioinformatics Scientist' 'Full Stack Engineer'
+ 'Postdoctoral Fellow' 'Technology Integrator' 'Algorithm Developer'
+ 'AI Specialist' 'Data Integrator' 'Data Lead'
+ 'Business Intelligence Specialist'
+ 'Encounter Data Management Professional' 'Java Developer'
+ 'Power BI Developer' 'AI Product Owner' 'Principal Software Architect'
+ 'Statistical Programmer' 'Data Operations Specialist'
+ 'Master Data Management' 'Data Analytics Specialist' 'MLOps Engineer'
+ 'Data Product Manager' 'Security Researcher' 'AI Research Scientist'
+ 'Data Operations Analyst' 'Principal Statistical Programmer'
+ 'Data Team Lead' 'Data Infrastructure Engineer' 'Big Data Developer'
+ 'BI Engineer' 'Developer Advocate' 'Postdoctoral Researcher' 'Tech Lead'
+ 'Data Visualization Specialist' 'Scala Spark Developer'
+ 'Sales Development Representative' 'Machine Learning Researcher'
+ 'Power BI' 'AI Scientist' 'Staff Data Scientist' 'Application Developer'
+ 'Decision Scientist' 'Cloud Database Administrator'
+ 'AI Machine Learning Engineer' 'Data Integrity Specialist'
+ 'Power BI Specialist' 'Analytics Lead' 'GenAI Architect'
+ 'Lead Data Analysis' 'Data Management Associate'
+ 'Data Integration Specialist' 'Lead Analyst' 'Head of Machine Learning'
+ 'Data Management Lead' 'QA Engineer' 'Data Analytics Consultant'
+ 'Data Quality Analyst' 'Data Visualization Developer'
+ 'Software Architect' 'Machine Learning Developer' 'Data Strategy Lead'
+ 'Data Scientist Associate' 'Data Quality Lead' 'Data Analytics Lead'
+ 'Business Intelligence Manager' 'Risk Analyst'
+ 'Marketing Science Partner' 'Data Reporting Specialist'
+ 'Clinical Data Operator' 'AI Lead' 'Machine Learning Specialist'
+ 'Research Data Manager' 'Technical Specialist'
+ 'Applied Research Scientist' 'Lead Data Management'
+ 'Data Analytics Developer' 'Machine Learning Architect'
+ 'Machine Learning Lead' 'Stage' 'Technical Writer'
+ 'Data Quality Engineer' 'Data Integration Analyst'
+ 'Safety Data Management Specialist' 'Business Intelligence Lead'
+ 'Data Operations Manager' 'Big Data Analyst' 'Data Scientist Manager'
+ 'Pricing Analyst' 'Lead Data Engineer' 'AI Engineering Manager'
+ 'Backend Developer' 'Data Management Coordinator' 'Analytics Analyst'
+ 'Controls Engineer' 'Machine Learning Tech Lead'
+ 'Business Development Manager' 'Data Management Consultant'
+ 'Business Insights Manager' 'Power BI Administrator'
+ 'Data Integration Developer' 'Data Integrity Analyst'
+ 'Platform Data Engineer' 'Bear Robotics'
+ 'Principal Application Delivery Consultant' 'Chatbot Developer'
+ 'Artificial Intelligence Engineer' 'Data Governance Architect'
+ 'Power BI Consultant' 'Backend Software Engineer' 'AI Product Manager'
+ 'Data Operations Associate' 'ML Infrastructure Engineer'
+ 'Cloud Developer' 'Data Operations Lead' 'Fullstack Engineer'
+ 'Machine Learning Quality Engineer' 'Security Engineer'
+ 'Databricks Engineer' 'Infrastructure Engineer' 'Solution Engineer'
+ 'Big Data Engineer' 'Machine Learning Performance Engineer'
+ 'Data Analytics Associate' 'Power BI Architect'
+ 'Machine Learning Platform Engineer' 'AI Solution Architect'
+ 'Data Scientist Lead' 'Machine Vision Engineer'
+ 'Data Governance Engineer' 'Machine Learning Model Engineer'
+ 'Marketing Analyst' 'Data Management Manager'
+ 'Marketing Analytics Manager' 'Applied AI ML Lead'
+ 'Data Strategy Manager' 'Machine Learning Manager' 'Data Product Analyst'
+ 'Data Quality Manager' 'Elasticsearch Administrator'
+ 'Machine Learning Infrastructure Engineer' 'People Data Analyst'
+ 'Frontend Engineer' 'NLP Engineer' 'SAS Developer'
+ 'Data Analytics Team Lead' 'Machine Learning Modeler'
+ 'Data Integration Coordinator' 'AI Programmer'
+ 'Head of Business Intelligence' 'ETL Engineer' 'AI Research Engineer'
+ 'Business Intelligence Consultant' 'Robotics Software Engineer'
+ 'AI Software Engineer' 'Lead AI Engineer'
+ 'AI Software Development Engineer' 'Master Data Specialist'
+ 'Consultant Data Engineer' 'Manager Data Management'
+ 'Director of Business Intelligence' 'Lead Data Scientist'
+ 'CRM Data Analyst' 'BI Data Analyst' 'Applied Data Scientist'
+ 'Data DevOps Engineer' 'Quantitative Research Analyst'
+ 'Lead Machine Learning Engineer' 'Machine Learning Research Engineer'
+ 'Data Analyst Lead' 'Data Pipeline Engineer' 'Lead Data Analyst'
+ 'Business Data Analyst' 'Marketing Data Scientist'
+ 'Deep Learning Engineer' 'Financial Data Analyst' 'Azure Data Engineer'
+ 'Principal Data Scientist' 'Staff Data Analyst'
+ 'Machine Learning Software Engineer' 'Applied Machine Learning Scientist'
+ 'Principal Machine Learning Engineer' 'Principal Data Engineer'
+ 'Staff Machine Learning Engineer' 'Business Intelligence Data Analyst'
+ 'Finance Data Analyst' 'Software Data Engineer' 'Compliance Data Analyst'
+ 'Cloud Data Engineer' 'Analytics Engineering Manager'
+ 'AWS Data Architect' 'Product Data Analyst'
+ 'Autonomous Vehicle Technician' 'Sales Data Analyst'
+ 'Applied Machine Learning Engineer' 'BI Data Engineer'
+ 'Deep Learning Researcher' 'Big Data Architect'
+ 'Computer Vision Software Engineer' 'Marketing Data Engineer'
+ 'Data Science Tech Lead' 'Marketing Data Analyst'
+ 'Principal Data Architect' 'Data Analytics Engineer'
+ 'Cloud Data Architect' 'Principal Data Analyst']
+
+Company Locations
+
+['NL' 'US' 'GB' 'LT' 'CA' 'ES' 'DE' 'LV' 'BE' 'FR' 'SK' 'PH' 'IE' 'AU'
+ 'BR' 'IN' 'PL' 'PE' 'AR' 'AT' 'CH' 'NZ' 'PT' 'RS' 'FI' 'TW' 'NO' 'UA'
+ 'SV' 'EC' 'CL' 'DO' 'MX' 'CO' 'MT' 'DK' 'ID' 'MY' 'XK' 'CR' 'JP' 'ZM'
+ 'PR' 'AM' 'SG' 'LU' 'IT' 'CY' 'CD' 'IL' 'CZ' 'KR' 'ZA' 'EG' 'LB' 'GR'
+ 'NG' 'BG' 'HU' 'HR' 'KE' 'SE' 'TR' 'PK' 'HN' 'RO' 'VE' 'DZ' 'AS' 'AE'
+ 'SA' 'OM' 'BA' 'EE' 'VN' 'GI' 'SI' 'MU' 'RU' 'QA' 'GH' 'AD' 'HK' 'CF'
+ 'TH' 'IR' 'BS' 'IQ' 'CN' 'MD']
+
+Netherlands
+United States
+United Kingdom
+Lithuania
+Canada
+Spain
+Germany
+Latvia
+Belgium
+France
+Slovakia
+Philippines
+Ireland
+Australia
+Brazil
+India
+Poland
+Peru
+Argentina
+Austria
+Switzerland
+New Zealand
+Portugal
+Serbia
+Finland
+Taiwan
+Norway
+Ukraine
+El Salvador
+Ecuador
+Chile
+Dominican Republic
+Mexico
+Colombia
+Malta
+Denmark
+Indonesia
+Malaysia
+Kosovo
+Costa Rica
+Japan
+Zambia
+Puerto Rico
+Armenia
+Singapore
+Luxembourg
+Italy
+Cyprus
+Congo (Democratic Republic)
+Israel
+Czech Republic
+South Korea
+South Africa
+Egypt
+Lebanon
+Greece
+Nigeria
+Bulgaria
+Hungary
+Croatia
+Kenya
+Sweden
+Turkey
+Pakistan
+Honduras
+Romania
+Venezuela
+Algeria
+American Samoa
+United Arab Emirates
+Saudi Arabia
+Oman
+Bosnia and Herzegovina
+Estonia
+Vietnam
+Gibraltar
+Slovenia
+Mauritius
+Russia
+Qatar
+Ghana
+Andorra
+Hong Kong
+Central African Republic
+Thailand
+Iran
+Bahamas
+Iraq
+China
+Moldova
+
+def countryList():
+    print("Netherlands, United States\nUnited Kingdom, Lithuania\nCanada, Spain\nGermany, Latvia\nBelgium, France\nSlovakia, Philippines\nIreland, Australia\nBrazil, India")
+    print("Poland, Peru\nArgentina, Austria\nSwitzerland, New Zealand\nPortugal, Serbia\nFinland, Taiwan\nNorway, Ukraine\nEl Salvador, Ecuador\nChile, Dominican Republic")
+    print("Mexico, Colombia\nMalta, Denmark\nIndonesia, Malaysia\nKosovo, Costa Rica\nJapan, Zambia\nPuerto Rico, Armenia\nSingapore, Luxembourg\nItaly, Cyprus")
+    print("Congo (Democratic Republic), Israel\nCzech Republic, South Korea\nSouth Africa, Egypt\nLebanon, Greece\nNigeria, Bulgaria\nHungary, Croatia\nKenya, Sweden")
+    print("Turkey, Pakistan\nHonduras, Romania\nVenezuela, Algerian\nAmerican Samoa, United Arab Emirates\nSaudi Arabia, Oman\nBosnia and Herzegovina, Estonia")
+    print("Vietnam, Gibraltar\nSlovenia, Mauritius\nRussia, Qatar\nGhana, Andorra\nHong Kong, Central African Republic\nThailand, Iran\nBahamas, Iraq\nChina, Moldova")
+    return
+
+
+
+# Code that chatGPT made, and I have edited a lot, reusing the dictionary - conor masterson
+# Dictionary mapping full country names to ISO 3166 codes
+countryDictionary = {
+    'Netherlands': 'NL', 'United States': 'US', 'United Kingdom': 'GB', 'Lithuania': 'LT',
+    'Canada': 'CA', 'Spain': 'ES', 'Germany': 'DE', 'Latvia': 'LV', 'Belgium': 'BE',
+    'France': 'FR', 'Slovakia': 'SK', 'Philippines': 'PH', 'Ireland': 'IE', 'Australia': 'AU',
+    'Brazil': 'BR', 'India': 'IN', 'Poland': 'PL', 'Peru': 'PE', 'Argentina': 'AR', 'Austria': 'AT',
+    'Switzerland': 'CH', 'New Zealand': 'NZ', 'Portugal': 'PT', 'Serbia': 'RS', 'Finland': 'FI',
+    'Taiwan': 'TW', 'Norway': 'NO', 'Ukraine': 'UA', 'El Salvador': 'SV', 'Ecuador': 'EC',
+    'Chile': 'CL', 'Dominican Republic': 'DO', 'Mexico': 'MX', 'Colombia': 'CO', 'Malta': 'MT',
+    'Denmark': 'DK', 'Indonesia': 'ID', 'Malaysia': 'MY', 'Kosovo': 'XK', 'Costa Rica': 'CR',
+    'Japan': 'JP', 'Zambia': 'ZM', 'Puerto Rico': 'PR', 'Armenia': 'AM', 'Singapore': 'SG',
+    'Luxembourg': 'LU', 'Italy': 'IT', 'Cyprus': 'CY', 'Congo (Democratic Republic)': 'CD',
+    'Israel': 'IL', 'Czech Republic': 'CZ', 'South Korea': 'KR', 'South Africa': 'ZA', 'Egypt': 'EG',
+    'Lebanon': 'LB', 'Greece': 'GR', 'Nigeria': 'NG', 'Bulgaria': 'BG', 'Hungary': 'HU', 'Croatia': 'HR',
+    'Kenya': 'KE', 'Sweden': 'SE', 'Turkey': 'TR', 'Pakistan': 'PK', 'Honduras': 'HN', 'Romania': 'RO',
+    'Venezuela': 'VE', 'Algeria': 'DZ', 'American Samoa': 'AS', 'United Arab Emirates': 'AE',
+    'Saudi Arabia': 'SA', 'Oman': 'OM', 'Bosnia and Herzegovina': 'BA', 'Estonia': 'EE', 'Vietnam': 'VN',
+    'Gibraltar': 'GI', 'Slovenia': 'SI', 'Mauritius': 'MU', 'Russia': 'RU', 'Qatar': 'QA', 'Ghana': 'GH',
+    'Andorra': 'AD', 'Hong Kong': 'HK', 'Central African Republic': 'CF', 'Thailand': 'TH', 'Iran': 'IR',
+    'Bahamas': 'BS', 'Iraq': 'IQ', 'China': 'CN', 'Moldova': 'MD'
+}
+
+# Function to convert full country name to ISO 3166 code
+def country_ISO_Convert(countryName):
+    countryName = countryName.strip().title()  # Capitalize the country name
+    return countryDictionary.get(countryName, "Country not found")
+
+# Get user input
+user_input = input("Enter the full country name: ")
+
+# Convert to ISO code
+iso_code = country_ISO_Convert(user_input)
+
+print(f"The ISO 3166 code for {user_input} is: {iso_code}")
+
+
+Experience Levels
+
+['MI' 'SE' 'EN' 'EX']
+
+EN) Entry-level / Junior\nMI) Mid-level / Intermediate\nSE) Senior-level / Expert\nEX) Executive-level / Director

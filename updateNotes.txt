@@ -1,0 +1,16 @@
+Writing an update log so I know what im working on in the next few days, as the code is currently around maybe 900 lines and its not the usual workload
+and it will be useful for whenever I decide to write my report (likely thursday evening, project due friday)
+
+####################################### 23/3/25 Update Log #########################################################
+
+nG data interpretation is fully done and tested, theres some stuff that could be improved on, such as for the ranges, 
+displaying what the highest and the lowest salary is would be useful data
+
+Need to fix Graphical data interpretation, probably using .mean(), etc.
+
+Optimised loops, to reduce the amount of errors that just close the program fully (typos, etc. makes the program less annoying)
+double check there isnt negative data in the .csv file too (dataCleaner())
+
+Also need to make a user warning when booting (program requires the Modules dataModule (Packaged in program folder), menuModule (Packaged in program folder), pandas and plotly)
+it can be useful, you know
+#####################################################################################################################
