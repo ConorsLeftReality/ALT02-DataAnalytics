@@ -1,0 +1,4 @@
+#TODO
+
+need to fix the graphs data, it is displaying the sum total (adding all the salaries together as example) in the bar charts,
+making the more popular jobs the highest result, even though they dont have as much pay as rarer jobs
