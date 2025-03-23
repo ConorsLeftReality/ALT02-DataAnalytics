@@ -1,8 +1,34 @@
+#Dependancies
+import os
+import time
+
+def clearScreen(): # who doesnt like a clean terminal
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def homeMenu():
+    subMenuList = ["1","2","quit"]
+    # Clear the screen
+    clearScreen()
+    # Prints menu
+    print("Data Interpreter Home Menu")
+    print("1. Non-Graphical Menu (For non graphical OS or pandas only data)")
+    print("2. Graphical Menu (Requires Browser, doesnt require Network)")
+    print("Or just type 'quit' to quit the program")
+    
+    submenuSelection = input("Make a selection: ")
+    # Check for valid selection, else re-prompt
+    while (submenuSelection in subMenuList) == False:
+        submenuSelection = input("Invalid selection - Make a valid selection: ")
+    return submenuSelection
+
 def Graphical_mainMenu():
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-    print("Graphical Data Display Program\n")
-    print("Menu:")
-    print("Fixed Graphs\n")
+    # Makes List
+    G_List = [str(i) for i in range(1, 14)]
+    # Clear the screen
+    clearScreen()
+    # Prints menu
+    print("Graphical Data Display\n")
+    print("Fixed Graphs")
     print("1. Average salary by job title")
     print("2. Average salary by country(in USD)")
     print("3. Average salary by experience")
@@ -17,42 +43,20 @@ def Graphical_mainMenu():
     print("11. Jobs within a user defined country")
     print("12. Jobs within a user defined job title")
     print("13. Jobs within a user defined company size")
-
-    #select which graph to display
-    menuSelection = input("Enter the graph you want to display\n:")
-    if menuSelection >= "1" and menuSelection <= "13":
-        print("Loading graph...")
-        return menuSelection
-    elif menuSelection >= "1" or menuSelection <= "13":
-        print("Loading graph...")
-        return menuSelection
-    else:
-        print("(New Achievement Unlocked: How did you get here?)\nSomething has broken in the Graph Input")
-        print("Restart the program, if error persists, contact the developer.")
-        exit()
-
-def homeMenu():
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-    print("Welcome to the Data Display Program, powered by the Pandas and Plotly Module\n")
-    print("Menu:")
-    print("1. Non-Graphical Data Display(Useful for non-graphical Operating Systems, or just data in text form)")
-    print("2. Graphical Data Display (Requires Browser, no network connection required)")
-    print("Or type 'exit' to exit the program")
-    menuSelection = input("Enter the menu you want to access\n:")
-    if menuSelection == "1":
-        return "1"
-    elif menuSelection == "2":
-        return "2"
-    elif menuSelection == "exit":
-        return "exit"
-    else:
-        print("Invalid input, please enter a valid input")
-        return "invalid"
+    
+    menuSelection = input("Make a selection: ")
+    # Check for valid selection, else re-prompt
+    while (menuSelection in G_List) == False:
+        menuSelection = input("Invalid selection - Make a valid selection: ")
+    return menuSelection
 
 def nonGraphical_mainMenu():
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-    print("Non-Graphical Data Display Program\n")
-    print("Menu:")
+    # Makes List
+    nG_List = [str(i) for i in range(1, 17)]
+    # clear the screen
+    clearScreen()
+    # print menu
+    print("Non-Graphical Data Display\n")
     print("Mean:")
     print("1. Mean salary by title")
     print("2. Mean salary by country")
@@ -73,15 +77,9 @@ def nonGraphical_mainMenu():
     print("14. Range of Pay by User Defined Country")
     print("15. Range of Pay by User Defined Title")
     print("16. Range of Pay by User Defined Experience\n")
-
-    menuSelection_nG = input("Enter the data you want to display\n:")
-    if menuSelection_nG >= "1" and menuSelection_nG <= "16":
-        print("Loading data...")
-        return menuSelection_nG
-    elif menuSelection_nG >= "1" or menuSelection_nG <= "16":  
-        print("Loading data...")
-        return menuSelection_nG
-    else:
-        print("(New Achievement Unlocked: How did you get here?)\nSomething has broken in the Data Input")
-        print("If error persists, contact the developer.")
-        return
+    
+    menuSelection_nG = input("Make a Selection: ")
+    # Check for valid selection, else re-prompt
+    while (menuSelection_nG in nG_List) == False:
+          menuSelection_nG = input("Invalid selection - Make a valid selection: ")
+    return menuSelection_nG

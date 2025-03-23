@@ -5,25 +5,21 @@
 import pandas as pd
 import plotly.express as px
 import time
+import os
 from Modules.dataModule import fileClean, dataInterprit_G, dataInterprit_nG
-from Modules.menuModule import Graphical_mainMenu, homeMenu, nonGraphical_mainMenu
-
-#get cleaned data
-status, cleanedPath = fileClean()
-if status == "failed":
-    print("Please restart the program and enter a valid file")
+from Modules.menuModule import Graphical_mainMenu, homeMenu, nonGraphical_mainMenu, clearScreen
+    
+# get cleaned data
+status, cleanedPath = fileClean()  #fileclean spits out whether cleaning was successful or not, and the cleaned file's path
+if status == "quit":
     exit()
 elif status == "success":
     print("Success, loading cleaned data...")
-    time.sleep(1)
-elif status == "loop":
-    print("Please restart the program and enter a valid file")
-    exit()
+    time.sleep(0.5)
 else:
     print("An error occured, likely with the dataModule or fileClean, please re-run the program")
     exit()
-
-# opens up cleaned data
+# Attempts to opens up cleaned data
 try:
     df = pd.read_csv(cleanedPath)
 except Exception as e:
@@ -32,24 +28,24 @@ except Exception as e:
     else:
         print(f"Error loading file: {e}")
     exit()
-
-# display menu for data display
+# Displays menu for data display
 exitProgram = False
 while exitProgram == False:
     subMenuChoice = homeMenu()
+    # User wants Non-Grapical Data
     if subMenuChoice == "1":
-        print("Loading Non-Graphical Data Display...")
-        time.sleep(1)
+        print("Loading Non-Graphical Data Menu...")
+        time.sleep(0.5)
         menuSelection_nG = nonGraphical_mainMenu()
         dataInterprit_nG(menuSelection_nG, df)
+    # User wants Graphical Data
     elif subMenuChoice == "2":
-        print("Loading Graphical Data Display...")
-        time.sleep(1)
+        print("Loading Graphical Data Menu...")
+        time.sleep(0.5)
         menuSelection = Graphical_mainMenu()
         dataInterprit_G(menuSelection, df)
-    elif subMenuChoice == "exit":
+    # User has had enough.
+    elif subMenuChoice == "quit":
         exitProgram = True
         print("Exiting program, thank you for using the Data Display Program!")
         exit()
-    else:
-        print("Invalid input, please restart the program and enter a valid input")
