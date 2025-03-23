@@ -9,7 +9,7 @@
 #
 # Your program must sucessfully read in information from your external dataset
 # Your data must be cleaned to make sure its in a usable format
-# Your program must display some statistical information about some of the data i.e. the mean, mode, median and range of some of the data (graphical and non graphical results, useful for users on non-graphical Operating Systems)
+# Your program must display some statistical information about some of the data i.e. the mean, mode, median and range of some of the data (graphical and non  graphical results, useful for users on non-graphical Operating Systems)
 # You create one graph based on your analysis of your chosen dataset (plotly)
 # The user can choose which part of the dataset th get statistics about (User Defined Graphs?)
 # The user has a choice of what type of statistics they get (menu?)
@@ -24,15 +24,15 @@
 # Mode:
 #   1. Mode of job title
 #   2. Mode of Experience
-#   3. Mode of Countrys worked
-#   4. Mode of Countries lived in (retitle these conor)
+#   3. Mode of Countrys of work
+#   4. Mode of Residence Countries
 # Median:
 #   1. Median salary by title
 #   2. Median salary by country
 #   3. Median salary by experience
 #   4. Median salary over time
 # Range:
-#   1. Range of Pay (Highest to lowest, while displaying the lowest and highest salary)
+#   1. Range of Pay (Highest to lowest, while displaying the lowest and highest salary) (TODO CONOR)
 #   2. Range of Pay by User Defined Country (Prints Country list when selected)
 #   3. Range of Pay by User Defined Title (Prints list)
 #   4. Range of Pay by User Defined Experience (Prints list)
