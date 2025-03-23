@@ -5,6 +5,13 @@ Based on *'The AI, ML, Data Science Salary (2020- 2025)'* dataset by Samith Chim
 under the CC0: Public Domain License on Kaggle
 https://www.kaggle.com/datasets/samithsachidanandan/the-global-ai-ml-data-science-salary-for-2025
 
+# **How To Use**
+Download all the files and keep them where they are in the folders
+
+dataInterpreter.py is the main file you run to get analytics on salaries.csv, which it will automatically clean and create salaries_cleaned.csv
+
+This program is able to be run on Graphical and Non-Graphical Operating Systems, as plotly runs in a browser and pandas can run in the commmand line.
+
 # **Mandatory Task Requirements:**
 Your program must sucessfully read in information from your external dataset
 
