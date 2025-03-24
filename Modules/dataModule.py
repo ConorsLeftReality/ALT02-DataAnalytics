@@ -37,10 +37,6 @@ countryDictionary = {
 
 # making jobTitle List not hardcoded
 jobTitles_list = []
-"""
-with open("job_titles.txt", "r") as file:
-    jobTitles_list = [line.strip() for line in file]
-"""
 
 def countryList():
     i=0
@@ -53,16 +49,6 @@ def countryList():
             print()
         else:
             print(", ",end="")
-            
-    """
-    print("Netherlands, United States\nUnited Kingdom, Lithuania\nCanada, Spain\nGermany, Latvia\nBelgium, France\nSlovakia, Philippines\nIreland, Australia\nBrazil, India")
-    print("Poland, Peru\nArgentina, Austria\nSwitzerland, New Zealand\nPortugal, Serbia\nFinland, Taiwan\nNorway, Ukraine\nEl Salvador, Ecuador\nChile, Dominican Republic")
-    print("Mexico, Colombia\nMalta, Denmark\nIndonesia, Malaysia\nKosovo, Costa Rica\nJapan, Zambia\nPuerto Rico, Armenia\nSingapore, Luxembourg\nItaly, Cyprus")
-    print("Congo (Democratic Republic), Israel\nCzech Republic, South Korea\nSouth Africa, Egypt\nLebanon, Greece\nNigeria, Bulgaria\nHungary, Croatia\nKenya, Sweden")
-    print("Turkey, Pakistan\nHonduras, Romania\nVenezuela, Algerian\nAmerican Samoa, United Arab Emirates\nSaudi Arabia, Oman\nBosnia and Herzegovina, Estonia")
-    print("Vietnam, Gibraltar\nSlovenia, Mauritius\nRussia, Qatar\nGhana, Andorra\nHong Kong, Central African Republic\nThailand, Iran\nBahamas, Iraq\nChina, Moldova")
-    return
-    """
 
 def experienceDisplay():
     print("EN. Entry-level / Junior\nMI.  Mid-level / Intermediate\nSE. Senior-level / Expert\nEX. Executive-level / Director")
@@ -84,13 +70,6 @@ def jobsListDisplay(batchSize, startIndex): # Batch Jobs display for nG data int
             print(jobTitles_list[i]) # prints 5 new jobs
         result = input("Enter exact Job title, or 'more' for 5 more titles: ")
     return result,(startIndex + batchSize) # receiving side of code will call this the new startIndex
-
-# data interpret side of job list function
-#
-#jobListDisplay_result = "more"
-#        while jobListDisplay_result == "more":
-#            jobListDisplay_result, startIndex = jobsListDisplay(5, startIndex)
-#        jobTitle = jobListDisplay_result
     
 def loadAnimation(): # swag
     print(".")
@@ -122,6 +101,9 @@ def loadAnimation(): # swag
     clearScreen()
     return
 
+def pause():
+    input("Press enter to return to main menu")
+    
 #file cleaner function, drops all rows with missing values, all duplicated rows and rows with NULL values
 
 def fileClean():
@@ -153,8 +135,8 @@ def fileClean():
         df = df.dropna()
         df = df.drop_duplicates()
         if 'salary_in_usd' in df.columns:
-            df = df[df['salary_in_usd'] <= 500000] # salary doesnt go over 400k (i mean its possible but i dont want to get bad data)
-            df = df[df['salary_in_usd'] > 10000] # salary is over 5000 euro (we dont like child labour or negative salaries)
+            df = df[df['salary_in_usd'] <= 500000] 
+            df = df[df['salary_in_usd'] > 10000]
         #making cleaned path
         cleanedPath = (originalPath[:-4] + "_cleaned.csv")
         df.to_csv(cleanedPath, index=False)
@@ -298,8 +280,8 @@ def dataInterprit_nG(menuSelection, df):
         meanSalarybyTitle = df[df['job_title'] == jobTitle]['salary_in_usd'].mean()
         meanSalarybyTitle = round(meanSalarybyTitle, 2)
         print("The mean salary for the job title, " + str(jobTitle) + ", is $" + str(meanSalarybyTitle))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "2":
         clearScreen()
         countryList() # Countries list
@@ -308,8 +290,8 @@ def dataInterprit_nG(menuSelection, df):
         meanSalarybyCountry = df[df['company_location'] == country_3166]['salary_in_usd'].mean()
         meanSalarybyCountry = round(meanSalarybyCountry, 2)
         print("The mean salary (converted to USD) in " + str(country) + " is $" + str(meanSalarybyCountry))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "3":
         clearScreen()
         experienceDisplay()
@@ -321,35 +303,35 @@ def dataInterprit_nG(menuSelection, df):
         meanSalarybyEL = df[df['experience_level'] == experienceLevel]['salary_in_usd'].mean()
         meanSalarybyEL = round(meanSalarybyEL, 2)
         print("The mean salary for the Experience Level, " + str(experienceLevel) + ", in USD is $" + str(meanSalarybyEL))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "4":
         clearScreen()
         for year in range (2020,2026):
             meanSalarybyYear = df[df['work_year'] == year]['salary_in_usd'].mean()
             meanSalarybyYear = round(meanSalarybyYear, 2)
             print("The mean salary for the year, " + str(year) + ", was $" + str(meanSalarybyYear) +"\n")
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "5":
         clearScreen()
         modeJob = df['job_title'].mode()
         print("The Mode of Job Titles (Most Common) is " + str(modeJob[0]))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "6":
         clearScreen()
         experienceDisplay()
         modeExperienceLevel = df['experience_level'].mode()
         print("The Mode of Experience Level (Most Common) is " + str(modeExperienceLevel[0]))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "7":
         clearScreen()
         modeLocationofCountry = df['company_location'].mode()
         print("The Most common (mode) location for a Company is " + str(modeLocationofCountry[0]))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "8":
         clearScreen()
         modeEmployeeResidence = df['employee_residence'].mode()[0]
@@ -358,8 +340,8 @@ def dataInterprit_nG(menuSelection, df):
             print("The most common (mode) country of employee residence is " + str(fullCountryName))
         else:
             print("The most common (mode) country of employee residence is " + str(modeEmployeeResidence[0]))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "9":
         clearScreen()
         startIndex_global = 0
@@ -371,8 +353,8 @@ def dataInterprit_nG(menuSelection, df):
         medianSalarybyTitle = df[df['job_title'] == jobTitle]['salary_in_usd'].median()
         medianSalarybyTitle = round(medianSalarybyTitle, 2)
         print("The median salary for the job title, " + str(jobTitle) + ", is $" + str(medianSalarybyTitle))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "10":
         clearScreen()
         countryList() # Countries list
@@ -381,8 +363,8 @@ def dataInterprit_nG(menuSelection, df):
         medianSalarybyCountry = df[df['company_location'] == country_3166]['salary_in_usd'].median()
         medianSalarybyCountry = round(medianSalarybyCountry, 2)
         print("The median salary (converted to USD) in " + str(country) + " is $" + str(medianSalarybyCountry))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "11":
         clearScreen()
         print("EN) Entry-level / Junior\nMI) Mid-level / Intermediate\nSE) Senior-level / Expert\nEX) Executive-level / Director") # Experience list
@@ -390,23 +372,23 @@ def dataInterprit_nG(menuSelection, df):
         medianSalarybyEL = df[df['experience_level'] == experienceLevel]['salary_in_usd'].median()
         medianSalarybyEL = round(medianSalarybyEL, 2)
         print("The median salary for the Experience Level, " + str(experienceLevel) + ", in USD is $" + str(medianSalarybyEL))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "12":
         clearScreen()
         for year in range (2020,2026):
             medianSalarybyYear = df[df['work_year'] == year]['salary_in_usd'].median()
             medianSalarybyYear = round(medianSalarybyYear, 2)
             print("The median salary for the year, " + str(year) + ", was $" + str(medianSalarybyYear) +"\n")
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "13":
         clearScreen()
         salaryRange = (df['salary_in_usd'].max() - df['salary_in_usd'].min()).round(2)
         print("The range from lowest paying job and highest paying job is $" + str(salaryRange))
         print("The Highest paying salary was $" + str(df['salary_in_usd'].max()) + " and the lowest paying salary was $" + str(df['salary_in_usd'].min()))
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "14":
         clearScreen()
         countryList() # Countries list
@@ -421,8 +403,8 @@ def dataInterprit_nG(menuSelection, df):
         else:
             clearScreen()
             print("No jobs found for" + jobTitle)
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "15":
         clearScreen()
         startIndex_global = 0
@@ -439,8 +421,8 @@ def dataInterprit_nG(menuSelection, df):
             print("The range from lowest to highest paying salary for the job title, "+ str(jobTitle)+ " is $"+ str(job_salaryRange) + "\nThe Highest paying job is $" + str((dfFiltered_job['salary_in_usd'].max())) + " and the lowest paying job is $" + str(dfFiltered_job['salary_in_usd'].min()))
         else:
             print("No jobs found for" + jobTitle)
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "16":
         clearScreen()
         print("EN) Entry-level / Junior\nMI) Mid-level / Intermediate\nSE) Senior-level / Expert\nEX) Executive-level / Director") # Experience list
@@ -453,11 +435,12 @@ def dataInterprit_nG(menuSelection, df):
             print("The range from lowest to highest paying salary for the Experience Level, "+ str(experienceLevel)+ " is $"+ str(EL_salaryRange) + "\nThe Highest paying salary was $" + str(dfFiltered_EL['salary_in_usd'].max()) + "and the Lowest paying salary was $" + str(dfFiltered_EL['salary_in_usd'].min()))
         else:
             print("No jobs found for" + jobTitle)
-        print("\nReturning to menu in 8 seconds...")
-        time.sleep(8)
+        pause()
+        
     elif menuSelection == "back":
         clearScreen()
         print("Returning to menu")
+        
     else:
         clearScreen()
         print("Invalid selection")

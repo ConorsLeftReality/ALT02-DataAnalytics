@@ -11,9 +11,6 @@ import os
 from Modules.dataModule import *
 from Modules.menuModule import *
 import webbrowser
-
-def clearScreen(): # who doesnt like a clean terminal
-    os.system('cls' if os.name == 'nt' else 'clear')
     
 ## !!!IMPORTANT!!!
 ## This module requires the modules folder to be present, as they are dependancies for this script

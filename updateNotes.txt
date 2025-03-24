@@ -66,7 +66,7 @@ dataInterpreter rounds data (i think?)
 24/3/2025 17:05
 
 #todo
-
+create pause() function (change all sleeps at once for dataModule.py)(press enter to continue)
 
 #done
 now shows high/low values (12:30-50)
