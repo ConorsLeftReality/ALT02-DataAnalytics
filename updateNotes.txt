@@ -2,15 +2,36 @@ Writing an update log so I know what im working on in the next few days, as the 
 and it will be useful for whenever I decide to write my report (likely thursday evening, project due friday)
 
 ####################################### 23/3/25 Update Log #########################################################
+#done
+I have optimised loops, to reduce the amount of errors that just close the program fully (typos, etc. makes the program less annoying)
 
+#todo
 nG data interpretation is fully done and tested, theres some stuff that could be improved on, such as for the ranges, 
 displaying what the highest and the lowest salary is would be useful data
-
 Need to fix Graphical data interpretation, probably using .mean(), etc.
-
-Optimised loops, to reduce the amount of errors that just close the program fully (typos, etc. makes the program less annoying)
-double check there isnt negative data in the .csv file too (dataCleaner())
-
+need to double check there isnt negative data in the .csv file too (dataCleaner())
 Also need to make a user warning when booting (program requires the Modules dataModule (Packaged in program folder), menuModule (Packaged in program folder), pandas and plotly)
-it can be useful, you know
+
+#####################################################################################################################
+####################################### 24/3/25 Update Log #########################################################
+
+#todo
+Need to improve on the nG data, such as for the ranges, 
+displaying what the highest and the lowest salary is would be useful data
+
+#done
+Graphical data fixed and tested for the most par
+fixed dataCleaner so that if there was any negative data, it will clean it out
+User warning was added to the start of main program (dataInterpreter.py)
+Added ascii logo to the program (below)
+
+______      _          _____      _                           _            
+|  _  \    | |        |_   _|    | |                         | |           
+| | | |__ _| |_ __ _    | | _ __ | |_ ___ _ __ _ __  _ __ ___| |_ ___ _ __ 
+| | | / _` | __/ _` |   | || '_ \| __/ _ | '__| '_ \| '__/ _ | __/ _ | '__|
+| |/ | (_| | || (_| |  _| || | | | ||  __| |  | |_) | | |  __| ||  __| |   
+|___/ \__,_|\__\__,_|  \___|_| |_|\__\___|_|  | .__/|_|  \___|\__\___|_|   
+                                              | |                          
+                                              |_|        
+
 #####################################################################################################################

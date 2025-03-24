@@ -1,16 +1,34 @@
-#alt02
-#data should be cleaned prior to using this script, in form of .csv file and in the same location as this script (will be user confirmed)
+# Main Data Interpreter Program
+# Talks to the Modules in moduleFolder
+# Built for ALT02-Data Analytics as part of the Leaving Certificate Course
+# With love by Conor Masterson
 
-#modules
+# Modules
 import pandas as pd
 import plotly.express as px
 import time
 import os
 from Modules.dataModule import fileClean, dataInterprit_G, dataInterprit_nG
 from Modules.menuModule import Graphical_mainMenu, homeMenu, nonGraphical_mainMenu, clearScreen
+
+def clearScreen(): # who doesnt like a clean terminal
+    os.system('cls' if os.name == 'nt' else 'clear')
     
-# get cleaned data
-status, cleanedPath = fileClean()  #fileclean spits out whether cleaning was successful or not, and the cleaned file's path
+# Ask user whether the modules exist (I think the program would crash on the importing if they didnt)
+clearScreen()
+while True:
+    userConfirmModule = input("!!!IMPORTANT!!!\nThis program depends on the use of menuModule.py and dataModule.py,\nwhich should be stored in the 'Modules' folder below this program\n\nConfirm these exist before continuing\n(y/N): ").lower()
+    if userConfirmModule == "n":
+        clearScreen()
+        print("Closing Program, make sure to have the modules present")
+        exit()
+    elif userConfirmModule == "y":
+        break
+    else:
+        clearScreen()
+
+# Make cleaned data with dataModule, see how soon you need these dependancies
+status, cleanedPath = fileClean()  # fileClean spits out whether cleaning was successful or not, and the cleaned file's path
 if status == "quit":
     exit()
 elif status == "success":
@@ -19,19 +37,23 @@ elif status == "success":
 else:
     print("An error occured, likely with the dataModule or fileClean, please re-run the program")
     exit()
+
 # Attempts to opens up cleaned data
 try:
     df = pd.read_csv(cleanedPath)
+# Error prints if you went wrong, because the user is always 100% right
 except Exception as e:
     if "No such file or directory" in str(e):
         print(f"Error loading file: {e}\nWas the file name entered correctly?")
     else:
         print(f"Error loading file: {e}")
     exit()
+
 # Displays menu for data display
 exitProgram = False
 while exitProgram == False:
     subMenuChoice = homeMenu()
+    clearScreen()
     # User wants Non-Grapical Data
     if subMenuChoice == "1":
         print("Loading Non-Graphical Data Menu...")
@@ -44,8 +66,9 @@ while exitProgram == False:
         time.sleep(0.5)
         menuSelection = Graphical_mainMenu()
         dataInterprit_G(menuSelection, df)
-    # User has had enough.
+    # User wants no more
     elif subMenuChoice == "quit":
         exitProgram = True
+        clearScreen()
         print("Exiting program, thank you for using the Data Display Program!")
         exit()

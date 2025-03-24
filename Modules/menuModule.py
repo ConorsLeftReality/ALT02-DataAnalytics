@@ -4,18 +4,28 @@ import time
 
 def clearScreen(): # who doesnt like a clean terminal
     os.system('cls' if os.name == 'nt' else 'clear')
-
+def logo():
+    print("______      _          _____      _                           _            ")
+    print("|  _  \    | |        |_   _|    | |                         | |           ")
+    print("| | | |__ _| |_ __ _    | | _ __ | |_ ___ _ __ _ __  _ __ ___| |_ ___ _ __ ")
+    print("| | | / _` | __/ _` |   | || '_ \| __/ _ | '__| '_ \| '__/ _ | __/ _ | '__|")
+    print("| |/ | (_| | || (_| |  _| || | | | ||  __| |  | |_) | | |  __| ||  __| |   ")
+    print("|___/ \__,_|\__\__,_|  \___|_| |_|\__\___|_|  | .__/|_|  \___|\__\___|_|   ")
+    print("                                              | |                          ")
+    print("                                              |_|                          ")
+    print("")
 def homeMenu():
     subMenuList = ["1","2","quit"]
     # Clear the screen
     clearScreen()
     # Prints menu
-    print("Data Interpreter Home Menu")
+    logo()
+    print("========================== Home Menu ===========================")
     print("1. Non-Graphical Menu (For non graphical OS or pandas only data)")
     print("2. Graphical Menu (Requires Browser, doesnt require Network)")
-    print("Or just type 'quit' to quit the program")
+    print("             Or just type 'quit' to quit the program.\n         ")
     
-    submenuSelection = input("Make a selection: ")
+    submenuSelection = input("| ")
     # Check for valid selection, else re-prompt
     while (submenuSelection in subMenuList) == False:
         submenuSelection = input("Invalid selection - Make a valid selection: ")
@@ -41,8 +51,7 @@ def Graphical_mainMenu():
     print("9. Jobs within a user defined salary range") 
     print("10. Jobs within a user defined experience range")
     print("11. Jobs within a user defined country")
-    print("12. Jobs within a user defined job title")
-    print("13. Jobs within a user defined company size")
+    print("12. Jobs within a user defined company size")
     
     menuSelection = input("Make a selection: ")
     # Check for valid selection, else re-prompt

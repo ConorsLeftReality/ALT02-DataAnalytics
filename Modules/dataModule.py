@@ -161,6 +161,11 @@ def countryList():
     print("Vietnam, Gibraltar\nSlovenia, Mauritius\nRussia, Qatar\nGhana, Andorra\nHong Kong, Central African Republic\nThailand, Iran\nBahamas, Iraq\nChina, Moldova")
     return
 
+def experienceDisplay():
+    print("EN. Entry-level / Junior\nMI.  Mid-level / Intermediate\nSE. Senior-level / Expert\nEX. Executive-level / Director")
+
+experienceList = ['EN','MI','SE','EX'] # list to verify off of
+
 def country_ISO_Convert(countryName):
     countryName = countryName.strip().title()  # ALL CAPS WHEN YOU SPELL THE MANS NAME
     return countryDictionary.get(countryName, "Country not found")
@@ -243,7 +248,8 @@ def fileClean():
         df = df.dropna()
         df = df.drop_duplicates()
         if 'salary_in_usd ' in df.columns:
-            df = df[df['salary_in_usd'] <= 400000]
+            df = df[df['salary_in_usd'] <= 400000] # salary doesnt go over 400k (i mean its possible but i dont want to get bad data)
+            df = df[df['salary_in_usd'] > 5000] # salary is over 5000 euro (we dont like child labour or negative salaries)
         #making cleaned path
         cleanedPath = (originalPath[:-4] + "_cleaned.csv")
         df.to_csv(cleanedPath, index=False)
@@ -254,78 +260,114 @@ def fileClean():
 
 def dataInterprit_G(menuSelection, df):
     if menuSelection == "1":
-        AvgSal_Title = px.bar(df, x="salary_in_usd", y="job_title", title="Average Salary by Job Title")
+        clearScreen()
+        AvgSal_TitleGrouping = df.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        AvgSal_Title = px.bar(AvgSal_TitleGrouping, x="job_title", y="salary_in_usd", title="Average Salary by Job Title")
         AvgSal_Title.show()
         loadAnimation()
     elif menuSelection == "2":
-        AvgSal_Country = px.bar(df, x="employee_residence", y="salary_in_usd", title="Average Salary by Country")
+        clearScreen()
+        AvgSal_CountryGrouping = df.groupby('company_location')['salary_in_usd'].mean().reset_index()
+        AvgSal_Country = px.bar(AvgSal_CountryGrouping, x="company_location", y="salary_in_usd", title="Average Salary by Business Country (ISO 3166 Format)")
         AvgSal_Country.show()
         loadAnimation()
     elif menuSelection == "3":
-        AvgSal_Exp = px.bar(df, x="experience_level", y="salary_in_usd", title="Average Salary by Experience")
+        clearScreen()
+        AvgSal_ExpGrouping = df.groupby('experience_level')['salary_in_usd'].mean().reset_index()
+        AvgSal_Exp = px.bar(AvgSal_ExpGrouping, x="experience_level", y="salary_in_usd", title="Average Salary by Experience")
         AvgSal_Exp.show()
         loadAnimation()
     elif menuSelection == "4":
-        AvgSal_Time = px.bar(df, x="work_year", y="salary_in_usd", title="Average Salary over Time")
+        clearScreen()
+        AvgSal_TimeGrouping = df.groupby('work_year')['salary_in_usd'].mean().reset_index()
+        AvgSal_Time = px.line(AvgSal_TimeGrouping, x="work_year", y="salary_in_usd", title="Average Salary over Time")
         AvgSal_Time.show()
         loadAnimation()
     elif menuSelection == "5":
-        JobTitle_Amount = px.pie(df, names="job_title", title="Amount of Jobs by Title")
+        clearScreen()
+        # Filter job titles so we get jobs that are greater than 1%, as plot didnt display well with lots of small percentages
+        jobCounts = df['job_title'].value_counts(normalize=True)
+        filteredJobs = jobCounts[jobCounts > 0.01].index
+        dfFiltered = df[df['job_title'].isin(filteredJobs)]
+        JobTitle_Amount = px.pie(dfFiltered, names="job_title", title="Top Amount of Jobs by Title")
         JobTitle_Amount.show()
         loadAnimation()
     elif menuSelection == "6":
-        Pay_highToLow = px.pie(df, names="job_title", values="salary_in_usd", title="Highest and Lowest Paying Jobs")
+        clearScreen()
+        # Turns out plotly really doesnt like lots of small numbers
+        jobCounts = df['job_title'].value_counts(normalize=True)
+        filteredJobs = jobCounts[jobCounts > 0.01].index
+        dfFiltered = df[df['job_title'].isin(filteredJobs)]
+        Pay_highToLow = px.pie(dfFiltered, names="job_title", values="salary_in_usd", title="Top Highest and Lowest Paying Jobs")
         Pay_highToLow.show()
         loadAnimation()
     elif menuSelection == "7":
-        Remote_Jobs = px.pie(df, names="remote_ratio", title="Number of Remote Jobs")
+        clearScreen()
+        Remote_Jobs = px.pie(df, names="remote_ratio", title="Percentage of Remote Jobs")
         Remote_Jobs.show()
         loadAnimation()
     elif menuSelection == "8":
-        PartTime_FullTime = px.pie(df, names="employment_type", title="Part Time vs Full Time Jobs")
+        clearScreen()
+        PartTime_FullTime = px.pie(df, names="employment_type", title="Job Types (Part-Time, Full-Time, Contract and Freelance)")
         PartTime_FullTime.show()
         loadAnimation()
 
     # User Defined Graphs
     elif menuSelection == "9":
-        salaryRange = input("Enter the salary range you want to display (e.g. 10000-20000)\n:")
-        salaryRange = salaryRange.split("-")
-        salaryRange = [int(i) for i in salaryRange]
-        df_filtered = df[(df["salary_in_usd"] >= salaryRange[0]) & (df["salary_in_usd"] <= salaryRange[1])]
-        SalaryRange = px.bar(df_filtered, x="job_title", y="salary_in_usd", title="Jobs within a user defined salary range")
+        clearScreen()
+        salaryRangeMax = input("Enter the top of the Salary Range(USD)\n: ")
+        salaryRangeMin = input("Enter the bottom of the Salary Range(USD)\n: ")
+        dfFiltered = df[(df["salary_in_usd"] >= salaryRangeMin) & (df["salary_in_usd"] <= salaryRangeMax)]
+        SalaryRange = px.bar(dfFiltered, x="job_title", y="salary_in_usd", title="Jobs within a user defined salary range")
         SalaryRange.show()
         loadAnimation()
     elif menuSelection == "10":
-        expRange = input("Enter the experience range you want to display (e.g. 1-3)\n:")
-        expRange = expRange.split("-")
-        expRange = [int(i) for i in expRange]
-        df_filtered = df[(df["experience_level"] >= expRange[0]) & (df["experience_level"] <= expRange[1])]
-        ExpRange = px.bar(df_filtered, x="job_title", y="salary_in_usd", title="Jobs within a user defined experience range")
+        clearScreen()
+        experienceDisplay()
+        expLevel = input("Enter the shortened Experience Level\n: ")
+        while expLevel not in experienceList:
+            clearScreen()
+            experienceDisplay()
+            expLevel = input("Invalid Option, Enter the shortened Experience Level\n: ")
+        dfFiltered = df[df["experience_level"] == expLevel]
+        AvgSal_ExpLevel = dfFiltered.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        ExpRange = px.bar(AvgSal_ExpLevel, x="job_title", y="salary_in_usd", title="Average Salary for Jobs of a User Defined Experience Level")
         ExpRange.show()
         loadAnimation()
     elif menuSelection == "11":
-        country = input("Enter the country you want to display\n:")
-        df_filtered = df[df["employee_residence"] == country]
-        Country = px.bar(df_filtered, x="job_title", y="salary_in_usd", title="Jobs within a user defined country")
+        clearScreen()
+        countryList()
+        countryRaw = input("Enter the country you want to display\n: ")
+        while countryRaw not in countryDictionary.keys():
+            print("Invalid option,")
+            countryRaw = input("Enter the country you want to display\n: ")
+        country = country_ISO_Convert(countryRaw)
+        dfFiltered = df[df["employee_residence"] == country]
+        AvgSal_Country = dfFiltered.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        Country = px.bar(AvgSal_Country, x="job_title", y="salary_in_usd", title="Average Salary for Jobs within a user defined country")
         Country.show()
         loadAnimation()
     elif menuSelection == "12":
-        jobTitle = input("Enter the job title you want to display\n:")
-        df_filtered = df[df["job_title"] == jobTitle]
-        JobTitle = px.bar(df_filtered, x="job_title", y="salary_in_usd", title="Jobs within a user defined job title")
-        JobTitle.show()
-        loadAnimation()
-    elif menuSelection == "13":
-        companySize = input("Enter the company size you want to display\n:")
-        df_filtered = df[df["company_size"] == companySize]
-        CompanySize = px.bar(df_filtered, x="job_title", y="salary_in_usd", title="Jobs within a user defined company size")
+        clearScreen()
+        print("S) less than 50 employees, M) 50-250 employees, L) more than 250 employees")
+        companySize = input("Enter the company size you want to display\n: ").upper()
+        while companySize != "S" and companySize != "M" and companySize != "L":
+            clearScreen()
+            print("S) less than 50 employees, M) 50-250 employees, L) more than 250 employees")
+            print("Invalid Option,")
+            companySize = input("Enter the company size you want to display\n: ").upper()
+        dfFiltered = df[df["company_size"] == companySize]
+        AvgSal_CompanySize = dfFiltered.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        CompanySize = px.bar(AvgSal_CompanySize, x="job_title", y="salary_in_usd", title="Average Salary by Job Title within a User Defined Company Size (" + companySize + ")")
         CompanySize.show()
         loadAnimation()
     elif menuSelection == "exit":
+        clearScreen()
         exitProgram = True
         print("Exiting program, thank you for using the Data Display Program!")
         exit()
     else:
+        clearScreen()
         print("Invalid selection")
         time.sleep(1)
     return
@@ -351,7 +393,7 @@ def dataInterprit_nG(menuSelection, df):
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "3":
-        print("EN. Entry-level / Junior\nMI.  Mid-level / Intermediate\nSE. Senior-level / Expert\nEX. Executive-level / Director") # Experience list
+         # Experience list
         experienceLevel = input("Enter Experience Level(Shortened and in CAPS): ")
         meanSalarybyEL = df[df['experience_level'] == experienceLevel]['salary_in_usd'].mean()
         print("The mean salary for the Experience Level, " + str(experienceLevel) + ", in USD is $" + str(meanSalarybyEL))
@@ -468,7 +510,6 @@ def dataInterprit_nG(menuSelection, df):
     else:
         print("Invalid selection")
         time.sleep(1)
-        
 
 """
 # Tool used to make lists of unique entries for user inputs
