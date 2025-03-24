@@ -1,15 +1,6 @@
 # **ALT02 - DataAnalytics**
 # **Active Learning Task for Leaving Cert, based on the python modules Pandas and Plotly, for use with .csv files**
 
-______      _          _____      _                           _            
-|  _  \    | |        |_   _|    | |                         | |           
-| | | |__ _| |_ __ _    | | _ __ | |_ ___ _ __ _ __  _ __ ___| |_ ___ _ __ 
-| | | / _` | __/ _` |   | || '_ \| __/ _ | '__| '_ \| '__/ _ | __/ _ | '__|
-| |/ | (_| | || (_| |  _| || | | | ||  __| |  | |_) | | |  __| ||  __| |   
-|___/ \__,_|\__\__,_|  \___|_| |_|\__\___|_|  | .__/|_|  \___|\__\___|_|   
-                                              | |                          
-                                              |_|     
-
 Based on *'The AI, ML, Data Science Salary (2020- 2025)'* dataset by Samith Chimminiyan,
 under the CC0: Public Domain License on Kaggle
 https://www.kaggle.com/datasets/samithsachidanandan/the-global-ai-ml-data-science-salary-for-2025
