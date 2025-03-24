@@ -322,11 +322,12 @@ def dataInterprit_G(menuSelection, df):
     # User Defined Graphs
     elif menuSelection == "9":
         clearScreen()
-        salaryRangeMax = input("Enter the top of the Salary Range(USD)\n: ")
-        salaryRangeMin = input("Enter the bottom of the Salary Range(USD)\n: ")
+        salaryRangeMax = int(input("Enter the top of the Salary Range(USD)\n: "))
+        salaryRangeMin = int(input("Enter the bottom of the Salary Range(USD)\n: "))
         dfFiltered = df[(df["salary_in_usd"] >= salaryRangeMin) & (df["salary_in_usd"] <= salaryRangeMax)]
-        dfFiltered['salary_in_usd'] = dfFiltered['salary_in_usd'].round(2)
-        SalaryRange = px.bar(dfFiltered, x="job_title", y="salary_in_usd", title="Jobs within a user defined salary range")
+        AvgSal_SalaryRange = dfFiltered.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        AvgSal_SalaryRange['salary_in_usd'] = AvgSal_SalaryRange['salary_in_usd'].round(2)
+        SalaryRange = px.bar(AvgSal_SalaryRange, x="job_title", y="salary_in_usd", title="Average Salary for Jobs within a user defined salary range")
         SalaryRange.show()
         loadAnimation()
     elif menuSelection == "10":
@@ -385,6 +386,7 @@ def dataInterprit_G(menuSelection, df):
 
 def dataInterprit_nG(menuSelection, df):
     if menuSelection == "1":
+        clearScreen()
         startIndex_global = 0
         jobListDisplay_result = "more"
         while jobListDisplay_result == "more":
@@ -392,55 +394,72 @@ def dataInterprit_nG(menuSelection, df):
             jobListDisplay_result, startIndex_global = jobsListDisplay(5, startIndex_global)
         jobTitle = jobListDisplay_result
         meanSalarybyTitle = df[df['job_title'] == jobTitle]['salary_in_usd'].mean()
-        meanSalarybyTitle['salary_in_usd'] = meanSalarybyTitle['salary_in_usd'].round(2)
+        meanSalarybyTitle = round(meanSalarybyTitle, 2)
         print("The mean salary for the job title, " + str(jobTitle) + ", is $" + str(meanSalarybyTitle))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "2":
+        clearScreen()
         countryList() # Countries list
         country = input("Enter the Exact Country: ")
         country_3166 = country_ISO_Convert(country)
         meanSalarybyCountry = df[df['company_location'] == country_3166]['salary_in_usd'].mean()
-        meanSalarybyCountry['salary_in_usd'] = meanSalarybyCountry['salary_in_usd'].round(2)
+        meanSalarybyCountry = round(meanSalarybyCountry, 2)
         print("The mean salary (converted to USD) in " + str(country) + " is $" + str(meanSalarybyCountry))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "3":
-         # Experience list
+        clearScreen()
+        experienceDisplay()
         experienceLevel = input("Enter Experience Level(Shortened and in CAPS): ")
+        while experienceLevel not in experienceList:
+            clearScreen()
+            experienceDisplay()
+            experienceLevel = input("Invalid Input, Enter Experience Level(Shortened and in CAPS): ")
         meanSalarybyEL = df[df['experience_level'] == experienceLevel]['salary_in_usd'].mean()
-        meanSalarybyEL['salary_in_usd'] = meanSalarybyEL['salary_in_usd'].round(2)
+        meanSalarybyEL = round(meanSalarybyEL, 2)
         print("The mean salary for the Experience Level, " + str(experienceLevel) + ", in USD is $" + str(meanSalarybyEL))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "4":
+        clearScreen()
         for year in range (2020,2026):
             meanSalarybyYear = df[df['work_year'] == year]['salary_in_usd'].mean()
-            meanSalarybyYear['salary_in_usd'] = meanSalarybyYear['salary_in_usd'].round(2)
+            meanSalarybyYear = round(meanSalarybyYear, 2)
             print("The mean salary for the year, " + str(year) + ", was $" + str(meanSalarybyYear) +"\n")
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "5":
+        clearScreen()
         modeJob = df['job_title'].mode()
         print("The Mode of Job Titles (Most Common) is " + str(modeJob))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "6":
+        clearScreen()
+        experienceDisplay()
         modeExperienceLevel = df['experience_level'].mode()
-        print("The Mode of Experience Level (Most Common) is " + str(modeExperienceLevel))
+        print("The Mode of Experience Level (Most Common) is " + str(modeExperienceLevel[0]))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "7":
+        clearScreen()
         modeLocationofCountry = df['company_location'].mode()
         print("The Most common (mode) location for a Company is " + str(modeLocationofCountry))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "8":
-        modeEmployeeResidence = df['employee_residence'].mode()
-        print("The most common (mode) country of employee residence is " + str(modeEmployeeResidence))
+        clearScreen()
+        modeEmployeeResidence = df['employee_residence'].mode()[0]
+        fullCountryName = [key for key, value in countryDictionary.items() if value == modeEmployeeResidence]
+        if fullCountryName:
+            print("The most common (mode) country of employee residence is " + fullCountryName[0])
+        else:
+            print("The most common (mode) country of employee residence is " + modeEmployeeResidence)
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "9":
+        clearScreen()
         startIndex_global = 0
         jobListDisplay_result = "more"
         while jobListDisplay_result == "more":
@@ -448,40 +467,46 @@ def dataInterprit_nG(menuSelection, df):
             jobListDisplay_result, startIndex_global = jobsListDisplay(5, startIndex_global)
         jobTitle = jobListDisplay_result
         medianSalarybyTitle = df[df['job_title'] == jobTitle]['salary_in_usd'].median()
-        medianSalarybyTitle['salary_in_usd'] = medianSalarybyTitle['salary_in_usd'].round(2)
+        medianSalarybyTitle = round(medianSalarybyTitle, 2)
         print("The median salary for the job title, " + str(jobTitle) + ", is $" + str(medianSalarybyTitle))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "10":
+        clearScreen()
         countryList() # Countries list
         country = input("Enter the Exact Country: ")
         country_3166 = country_ISO_Convert(country)
         medianSalarybyCountry = df[df['company_location'] == country_3166]['salary_in_usd'].median()
-        medianSalarybyCountry['salary_in_usd'] = medianSalarybyCountry['salary_in_usd'].round(2)
+        medianSalarybyCountry = round(medianSalarybyCountry, 2)
         print("The median salary (converted to USD) in " + str(country) + " is $" + str(medianSalarybyCountry))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "11":
+        clearScreen()
         print("EN) Entry-level / Junior\nMI) Mid-level / Intermediate\nSE) Senior-level / Expert\nEX) Executive-level / Director") # Experience list
         experienceLevel = input("Enter Experience Level: ")
         medianSalarybyEL = df[df['experience_level'] == experienceLevel]['salary_in_usd'].median()
-        medianSalarybyEL['salary_in_usd'] = medianSalarybyEL['salary_in_usd'].round(2)
+        medianSalarybyEL = round(medianSalarybyEL, 2)
         print("The median salary for the Experience Level, " + str(experienceLevel) + ", in USD is $" + str(medianSalarybyEL))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "12":
+        clearScreen()
         for year in range (2020,2026):
             medianSalarybyYear = df[df['work_year'] == year]['salary_in_usd'].median()
-            medianSalarybyYear['salary_in_usd'] = medianSalarybyYear['salary_in_usd'].round(2)
+            medianSalarybyYear = round(medianSalarybyYear, 2)
             print("The median salary for the year, " + str(year) + ", was $" + str(medianSalarybyYear) +"\n")
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "13":
+        clearScreen()
         salaryRange = (df['salary_in_usd'].max() - df['salary_in_usd'].min()).round(2)
         print("The range from lowest paying job and highest paying job is $" + str(salaryRange))
+        print("The Highest paying salary was $" + str(df['salary_in_usd'].max()) + " and the lowest paying salary was $" + str(df['salary_in_usd'].min()))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "14":
+        clearScreen()
         countryList() # Countries list
         country = input("Enter the Exact Country: ")
         country_3166 = country_ISO_Convert(country)
@@ -489,12 +514,13 @@ def dataInterprit_nG(menuSelection, df):
         # Checks if dataframe has any matching jobs
         if not dfFiltered_country.empty:
             country_salaryRange = (dfFiltered_country['salary_in_usd'].max() - dfFiltered_country['salary_in_usd'].min()).round(2)
-            print("The range from lowest to highest paying salary in "+ str(country) +" is $" + str(country_salaryRange))
+            print("The range from lowest to highest paying salary in "+ str(country) +" is $" + str(country_salaryRange), + "\nThe Highest paying salary is $" + str(dfFiltered_country['salary_in_usd'].max()) + "and the lowest paying salary is $" + str(dfFiltered_country['salary_in_usd'].min()))
         else:
             print("No jobs found for" + jobTitle)
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "15":
+        clearScreen()
         startIndex_global = 0
         jobListDisplay_result = "more"
         while jobListDisplay_result == "more":
@@ -505,28 +531,31 @@ def dataInterprit_nG(menuSelection, df):
         # Checks if dataframe has any matching jobs
         if not dfFiltered_job.empty:
             job_salaryRange = (dfFiltered_job['salary_in_usd'].max() - dfFiltered_job['salary_in_usd'].min()).round(2)
-            print("The range from lowest to highest paying salary for the job title, "+ str(jobTitle)+ " is $"+ str(job_salaryRange))
+            print("The range from lowest to highest paying salary for the job title, "+ str(jobTitle)+ " is $"+ str(job_salaryRange) + "\nThe Highest paying job is $" + str((dfFiltered_job['salary_in_usd'].max())) + " and the lowest paying job is $" + str(dfFiltered_job['salary_in_usd'].min()))
         else:
             print("No jobs found for" + jobTitle)
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "16":
+        clearScreen()
         print("EN) Entry-level / Junior\nMI) Mid-level / Intermediate\nSE) Senior-level / Expert\nEX) Executive-level / Director") # Experience list
         experienceLevel = input("Enter Experience Level: ")
         dfFiltered_EL = df[df['experience_level'] == experienceLevel]
         # Checks if dataframe has any matching experience levels
         if not dfFiltered_EL.empty:
             EL_salaryRange = (dfFiltered_EL['salary_in_usd'].max() - dfFiltered_EL['salary_in_usd'].min()).round(2)
-            print("The range from lowest to highest paying salary for the Experience Level, "+ str(experienceLevel)+ " is $"+ str(EL_salaryRange))
+            print("The range from lowest to highest paying salary for the Experience Level, "+ str(experienceLevel)+ " is $"+ str(EL_salaryRange) + "\nThe Highest paying salary was $" + str(dfFiltered_EL['salary_in_usd'].max()) + "and the Lowest paying salary was $" + str(dfFiltered_EL['salary_in_usd'].min()))
         else:
             print("No jobs found for" + jobTitle)
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "exit":
+        clearScreen()
         exitProgram = True
         print("Exiting program, thank you for using the Data Display Program!")
         exit()
     else:
+        clearScreen()
         print("Invalid selection")
         time.sleep(1)
 

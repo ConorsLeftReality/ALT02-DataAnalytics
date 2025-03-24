@@ -60,8 +60,8 @@ Range:
   2. average salary by country
   3. average salary by experience
   4. average salary over time
-  5. amount of jobs by title and country
-  6. highest paying job and lowest paying job
+  5. amount of jobs by title
+  6. Highest paying jobs (pie chart)
   7. how many jobs are remote
   8. part-time vs full-time ratio
 

@@ -49,13 +49,29 @@ fixed README.MD (list for nG data, removed option 12 and relabeled option 13 to 
 
 #####################################################################################################################
 ####################################### 24/3/25 Update Log 3 ########################################################
+24/3/2025 12:55
 
 final version? 
 #todo
 show high/low values
+test all interprits, and test job title list
+change README.md , graphical option 5 (remove 'country') and graphical option 6 (highest paying only)
 
 #done
-dataModule.py fully checked, need to tested
-dataInterpreter should round data to 2 decimal places
+dataModule.py fully checked and tested
+dataInterpreter rounds data (i think?)
+
+#####################################################################################################################
+####################################### 24/3/25 Update Log 4 ########################################################
+24/3/2025 17:05
+
+#todo
+
+
+#done
+now shows high/low values (12:30-50)
+tested all interprits, and test job title list works (15:30)
+README.md updated (17:00)
+code easter egg added (if you know, you know)
 
 #####################################################################################################################

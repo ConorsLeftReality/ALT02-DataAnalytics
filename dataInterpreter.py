@@ -10,6 +10,7 @@ import time
 import os
 from Modules.dataModule import fileClean, dataInterprit_G, dataInterprit_nG
 from Modules.menuModule import Graphical_mainMenu, homeMenu, nonGraphical_mainMenu, clearScreen
+import webbrowser
 
 def clearScreen(): # who doesnt like a clean terminal
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -63,3 +64,17 @@ while exitProgram == False:
         clearScreen()
         print("Exiting program, thank you for using the Data Display Program!")
         exit()
+    
+    # Please dont mark me down on this
+    elif subMenuChoice == "3": 
+        clearScreen()
+        print("New Achievement: How did we get here?")
+        webbrowser.open("https://www.meme-arsenal.com/memes/242591b14631e9f3b858c3fff96f90af.jpg")
+        time.sleep(5)
+        # Forces Volume to 100%, thanks chatgpt
+        if os.name == 'nt':
+            os.system('powershell -Command "(New-Object -ComObject WScript.Shell).SendKeys([char]175)"')
+        else:
+            os.system('pactl set-sink-volume @DEFAULT_SINK@ 100%')
+        webbrowser.open("https://www.youtube.com/watch?v=xvFZjo5PgG0")
+        time.sleep(5)

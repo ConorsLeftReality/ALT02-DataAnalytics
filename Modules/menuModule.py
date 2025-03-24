@@ -15,7 +15,7 @@ def logo():
     print("                                              |_|                          ")
     print("")
 def homeMenu():
-    subMenuList = ["1","2","quit"]
+    subMenuList = ["1","2","quit","3"]
     # Clear the screen
     clearScreen()
     # Prints menu
