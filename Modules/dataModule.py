@@ -29,6 +29,7 @@ countryDictionary = {
     'Andorra': 'AD', 'Hong Kong': 'HK', 'Central African Republic': 'CF', 'Thailand': 'TH', 'Iran': 'IR',
     'Bahamas': 'BS', 'Iraq': 'IQ', 'China': 'CN', 'Moldova': 'MD'
 }
+# Made by pandasUnique code at the bottom :)
 jobTitles_list = [
     'Customer Success Manager', 'Engineer', 'Applied Scientist', 'Data Analyst', 
     'Software Development Engineer', 'Research Scientist', 'Data Scientist', 

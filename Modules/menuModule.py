@@ -25,14 +25,20 @@ def homeMenu():
     print("2. Graphical Menu (Requires Browser, doesnt require Network)")
     print("             Or just type 'quit' to quit the program.\n         ")
     
-    submenuSelection = input("| ")
+    submenuSelection = input("|Type here| ")
     # Check for valid selection, else re-prompt
     while (submenuSelection in subMenuList) == False:
-        submenuSelection = input("Invalid selection - Make a valid selection: ")
+        clearScreen()
+        logo()
+        print("========================== Home Menu ===========================")
+        print("1. Non-Graphical Menu (For non graphical OS or pandas only data)")
+        print("2. Graphical Menu (Requires Browser, doesnt require Network)")
+        print("             Or just type 'quit' to quit the program.\n         ")
+        submenuSelection = input("|Invalid selection - Make a valid selection| ")
     return submenuSelection
 
 def Graphical_mainMenu():
-    # Makes List
+    # Makes List, string of 1 to 13 (range goes to nMax-1)
     G_List = [str(i) for i in range(1, 14)]
     # Clear the screen
     clearScreen()
@@ -60,7 +66,7 @@ def Graphical_mainMenu():
     return menuSelection
 
 def nonGraphical_mainMenu():
-    # Makes List
+    # Makes List, same as comment on Graphical, but its for 1-16
     nG_List = [str(i) for i in range(1, 17)]
     # clear the screen
     clearScreen()
