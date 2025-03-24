@@ -14,18 +14,9 @@ from Modules.menuModule import Graphical_mainMenu, homeMenu, nonGraphical_mainMe
 def clearScreen(): # who doesnt like a clean terminal
     os.system('cls' if os.name == 'nt' else 'clear')
     
-# Ask user whether the modules exist (I think the program would crash on the importing if they didnt)
-clearScreen()
-while True:
-    userConfirmModule = input("!!!IMPORTANT!!!\nThis program depends on the use of menuModule.py and dataModule.py,\nwhich should be stored in the 'Modules' folder below this program\n\nConfirm these exist before continuing\n(y/N): ").lower()
-    if userConfirmModule == "n":
-        clearScreen()
-        print("Closing Program, make sure to have the modules present")
-        exit()
-    elif userConfirmModule == "y":
-        break
-    else:
-        clearScreen()
+## !!!IMPORTANT!!!
+## This module requires the modules folder to be present, as they are dependancies for this script
+## if they arent present, they are accesible through https://github.com/ConorsLeftReality/ALT02-DataAnalytics
 
 # Make cleaned data with dataModule, see how soon you need these dependancies
 status, cleanedPath = fileClean()  # fileClean spits out whether cleaning was successful or not, and the cleaned file's path
