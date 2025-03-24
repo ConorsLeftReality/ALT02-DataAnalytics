@@ -165,8 +165,7 @@ def countryList():
 def experienceDisplay():
     print("EN. Entry-level / Junior\nMI.  Mid-level / Intermediate\nSE. Senior-level / Expert\nEX. Executive-level / Director")
 
-experienceList = ['EN','MI','SE','EX'] # list to verify off of
-
+experienceList = ['EN','MI','SE','EX'] # list to verify function with
 def country_ISO_Convert(countryName):
     countryName = countryName.strip().title()  # ALL CAPS WHEN YOU SPELL THE MANS NAME
     return countryDictionary.get(countryName, "Country not found")
@@ -178,6 +177,9 @@ def jobsListDisplay(batchSize, startIndex): # Batch Jobs display for nG data int
     for i in range(startIndex, startIndex + batchSize):
             print(jobTitles_list[i]) # prints 5 new jobs
     while result not in jobTitles_list and result != "more":
+        clearScreen()
+        for i in range(startIndex, startIndex + batchSize):
+            print(jobTitles_list[i]) # prints 5 new jobs
         result = input("Enter exact Job title, or 'more' for 5 more titles: ")
     return result,(startIndex + batchSize) # receiving side of code will call this the new startIndex
 
@@ -188,7 +190,7 @@ def jobsListDisplay(batchSize, startIndex): # Batch Jobs display for nG data int
 #            jobListDisplay_result, startIndex = jobsListDisplay(5, startIndex)
 #        jobTitle = jobListDisplay_result
 
-def loadAnimation():
+def loadAnimation(): # swag
     print(".")
     time.sleep(0.2)
     clearScreen()
@@ -263,24 +265,28 @@ def dataInterprit_G(menuSelection, df):
     if menuSelection == "1":
         clearScreen()
         AvgSal_TitleGrouping = df.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        AvgSal_TitleGrouping['salary_in_usd'] = AvgSal_TitleGrouping['salary_in_usd'].round(2)
         AvgSal_Title = px.bar(AvgSal_TitleGrouping, x="job_title", y="salary_in_usd", title="Average Salary by Job Title")
         AvgSal_Title.show()
         loadAnimation()
     elif menuSelection == "2":
         clearScreen()
         AvgSal_CountryGrouping = df.groupby('company_location')['salary_in_usd'].mean().reset_index()
+        AvgSal_CountryGrouping['salary_in_usd'] = AvgSal_CountryGrouping['salary_in_usd'].round(2)
         AvgSal_Country = px.bar(AvgSal_CountryGrouping, x="company_location", y="salary_in_usd", title="Average Salary by Business Country (ISO 3166 Format)")
         AvgSal_Country.show()
         loadAnimation()
     elif menuSelection == "3":
         clearScreen()
         AvgSal_ExpGrouping = df.groupby('experience_level')['salary_in_usd'].mean().reset_index()
+        AvgSal_ExpGrouping['salary_in_usd'] = AvgSal_ExpGrouping['salary_in_usd'].round(2)
         AvgSal_Exp = px.bar(AvgSal_ExpGrouping, x="experience_level", y="salary_in_usd", title="Average Salary by Experience")
         AvgSal_Exp.show()
         loadAnimation()
     elif menuSelection == "4":
         clearScreen()
         AvgSal_TimeGrouping = df.groupby('work_year')['salary_in_usd'].mean().reset_index()
+        AvgSal_TimeGrouping['salary_in_usd'] = AvgSal_TimeGrouping['salary_in_usd'].round(2)
         AvgSal_Time = px.line(AvgSal_TimeGrouping, x="work_year", y="salary_in_usd", title="Average Salary over Time")
         AvgSal_Time.show()
         loadAnimation()
@@ -299,7 +305,7 @@ def dataInterprit_G(menuSelection, df):
         jobCounts = df['job_title'].value_counts(normalize=True)
         filteredJobs = jobCounts[jobCounts > 0.01].index
         dfFiltered = df[df['job_title'].isin(filteredJobs)]
-        Pay_highToLow = px.pie(dfFiltered, names="job_title", values="salary_in_usd", title="Top Highest and Lowest Paying Jobs")
+        Pay_highToLow = px.pie(dfFiltered, names="job_title", values="salary_in_usd", title="Top Highest Paying Jobs")
         Pay_highToLow.show()
         loadAnimation()
     elif menuSelection == "7":
@@ -319,6 +325,7 @@ def dataInterprit_G(menuSelection, df):
         salaryRangeMax = input("Enter the top of the Salary Range(USD)\n: ")
         salaryRangeMin = input("Enter the bottom of the Salary Range(USD)\n: ")
         dfFiltered = df[(df["salary_in_usd"] >= salaryRangeMin) & (df["salary_in_usd"] <= salaryRangeMax)]
+        dfFiltered['salary_in_usd'] = dfFiltered['salary_in_usd'].round(2)
         SalaryRange = px.bar(dfFiltered, x="job_title", y="salary_in_usd", title="Jobs within a user defined salary range")
         SalaryRange.show()
         loadAnimation()
@@ -332,6 +339,7 @@ def dataInterprit_G(menuSelection, df):
             expLevel = input("Invalid Option, Enter the shortened Experience Level\n: ")
         dfFiltered = df[df["experience_level"] == expLevel]
         AvgSal_ExpLevel = dfFiltered.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        AvgSal_ExpLevel['salary_in_usd'] = AvgSal_ExpLevel['salary_in_usd'].round(2)
         ExpRange = px.bar(AvgSal_ExpLevel, x="job_title", y="salary_in_usd", title="Average Salary for Jobs of a User Defined Experience Level")
         ExpRange.show()
         loadAnimation()
@@ -345,6 +353,7 @@ def dataInterprit_G(menuSelection, df):
         country = country_ISO_Convert(countryRaw)
         dfFiltered = df[df["employee_residence"] == country]
         AvgSal_Country = dfFiltered.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        AvgSal_Country['salary_in_usd'] = AvgSal_Country['salary_in_usd'].round(2)
         Country = px.bar(AvgSal_Country, x="job_title", y="salary_in_usd", title="Average Salary for Jobs within a user defined country")
         Country.show()
         loadAnimation()
@@ -359,6 +368,7 @@ def dataInterprit_G(menuSelection, df):
             companySize = input("Enter the company size you want to display\n: ").upper()
         dfFiltered = df[df["company_size"] == companySize]
         AvgSal_CompanySize = dfFiltered.groupby('job_title')['salary_in_usd'].mean().reset_index()
+        AvgSal_CompanySize['salary_in_usd'] = AvgSal_CompanySize['salary_in_usd'].round(2)
         CompanySize = px.bar(AvgSal_CompanySize, x="job_title", y="salary_in_usd", title="Average Salary by Job Title within a User Defined Company Size (" + companySize + ")")
         CompanySize.show()
         loadAnimation()
@@ -382,6 +392,7 @@ def dataInterprit_nG(menuSelection, df):
             jobListDisplay_result, startIndex_global = jobsListDisplay(5, startIndex_global)
         jobTitle = jobListDisplay_result
         meanSalarybyTitle = df[df['job_title'] == jobTitle]['salary_in_usd'].mean()
+        meanSalarybyTitle['salary_in_usd'] = meanSalarybyTitle['salary_in_usd'].round(2)
         print("The mean salary for the job title, " + str(jobTitle) + ", is $" + str(meanSalarybyTitle))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
@@ -390,6 +401,7 @@ def dataInterprit_nG(menuSelection, df):
         country = input("Enter the Exact Country: ")
         country_3166 = country_ISO_Convert(country)
         meanSalarybyCountry = df[df['company_location'] == country_3166]['salary_in_usd'].mean()
+        meanSalarybyCountry['salary_in_usd'] = meanSalarybyCountry['salary_in_usd'].round(2)
         print("The mean salary (converted to USD) in " + str(country) + " is $" + str(meanSalarybyCountry))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
@@ -397,12 +409,14 @@ def dataInterprit_nG(menuSelection, df):
          # Experience list
         experienceLevel = input("Enter Experience Level(Shortened and in CAPS): ")
         meanSalarybyEL = df[df['experience_level'] == experienceLevel]['salary_in_usd'].mean()
+        meanSalarybyEL['salary_in_usd'] = meanSalarybyEL['salary_in_usd'].round(2)
         print("The mean salary for the Experience Level, " + str(experienceLevel) + ", in USD is $" + str(meanSalarybyEL))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "4":
         for year in range (2020,2026):
             meanSalarybyYear = df[df['work_year'] == year]['salary_in_usd'].mean()
+            meanSalarybyYear['salary_in_usd'] = meanSalarybyYear['salary_in_usd'].round(2)
             print("The mean salary for the year, " + str(year) + ", was $" + str(meanSalarybyYear) +"\n")
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
@@ -434,6 +448,7 @@ def dataInterprit_nG(menuSelection, df):
             jobListDisplay_result, startIndex_global = jobsListDisplay(5, startIndex_global)
         jobTitle = jobListDisplay_result
         medianSalarybyTitle = df[df['job_title'] == jobTitle]['salary_in_usd'].median()
+        medianSalarybyTitle['salary_in_usd'] = medianSalarybyTitle['salary_in_usd'].round(2)
         print("The median salary for the job title, " + str(jobTitle) + ", is $" + str(medianSalarybyTitle))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
@@ -442,6 +457,7 @@ def dataInterprit_nG(menuSelection, df):
         country = input("Enter the Exact Country: ")
         country_3166 = country_ISO_Convert(country)
         medianSalarybyCountry = df[df['company_location'] == country_3166]['salary_in_usd'].median()
+        medianSalarybyCountry['salary_in_usd'] = medianSalarybyCountry['salary_in_usd'].round(2)
         print("The median salary (converted to USD) in " + str(country) + " is $" + str(medianSalarybyCountry))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
@@ -449,17 +465,19 @@ def dataInterprit_nG(menuSelection, df):
         print("EN) Entry-level / Junior\nMI) Mid-level / Intermediate\nSE) Senior-level / Expert\nEX) Executive-level / Director") # Experience list
         experienceLevel = input("Enter Experience Level: ")
         medianSalarybyEL = df[df['experience_level'] == experienceLevel]['salary_in_usd'].median()
+        medianSalarybyEL['salary_in_usd'] = medianSalarybyEL['salary_in_usd'].round(2)
         print("The median salary for the Experience Level, " + str(experienceLevel) + ", in USD is $" + str(medianSalarybyEL))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "12":
         for year in range (2020,2026):
             medianSalarybyYear = df[df['work_year'] == year]['salary_in_usd'].median()
+            medianSalarybyYear['salary_in_usd'] = medianSalarybyYear['salary_in_usd'].round(2)
             print("The median salary for the year, " + str(year) + ", was $" + str(medianSalarybyYear) +"\n")
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "13":
-        salaryRange = df['salary_in_usd'].max() - df['salary_in_usd'].min()
+        salaryRange = (df['salary_in_usd'].max() - df['salary_in_usd'].min()).round(2)
         print("The range from lowest paying job and highest paying job is $" + str(salaryRange))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
@@ -470,7 +488,7 @@ def dataInterprit_nG(menuSelection, df):
         dfFiltered_country = df[df['company_location'] == country_3166]
         # Checks if dataframe has any matching jobs
         if not dfFiltered_country.empty:
-            country_salaryRange = dfFiltered_country['salary_in_usd'].max() - dfFiltered_country['salary_in_usd'].min()
+            country_salaryRange = (dfFiltered_country['salary_in_usd'].max() - dfFiltered_country['salary_in_usd'].min()).round(2)
             print("The range from lowest to highest paying salary in "+ str(country) +" is $" + str(country_salaryRange))
         else:
             print("No jobs found for" + jobTitle)
@@ -486,7 +504,7 @@ def dataInterprit_nG(menuSelection, df):
         dfFiltered_job = df[df['job_title'] == jobTitle]
         # Checks if dataframe has any matching jobs
         if not dfFiltered_job.empty:
-            job_salaryRange = dfFiltered_job['salary_in_usd'].max() - dfFiltered_job['salary_in_usd'].min()
+            job_salaryRange = (dfFiltered_job['salary_in_usd'].max() - dfFiltered_job['salary_in_usd'].min()).round(2)
             print("The range from lowest to highest paying salary for the job title, "+ str(jobTitle)+ " is $"+ str(job_salaryRange))
         else:
             print("No jobs found for" + jobTitle)
@@ -498,7 +516,7 @@ def dataInterprit_nG(menuSelection, df):
         dfFiltered_EL = df[df['experience_level'] == experienceLevel]
         # Checks if dataframe has any matching experience levels
         if not dfFiltered_EL.empty:
-            EL_salaryRange = dfFiltered_EL['salary_in_usd'].max() - dfFiltered_EL['salary_in_usd'].min()
+            EL_salaryRange = (dfFiltered_EL['salary_in_usd'].max() - dfFiltered_EL['salary_in_usd'].min()).round(2)
             print("The range from lowest to highest paying salary for the Experience Level, "+ str(experienceLevel)+ " is $"+ str(EL_salaryRange))
         else:
             print("No jobs found for" + jobTitle)

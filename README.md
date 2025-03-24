@@ -70,5 +70,4 @@ Range:
   9. statistics for jobs within a user defined salary range
   10. statistics for jobs within a user defined experience level
   11. statistics for jobs within a user defined country
-  12. statistics for jobs within a user defined title
-  13. statistics for jobs within a user defined company size
+  12. statistics for jobs within a user defined company size

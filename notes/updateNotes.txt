@@ -13,7 +13,7 @@ need to double check there isnt negative data in the .csv file too (dataCleaner(
 Also need to make a user warning when booting (program requires the Modules dataModule (Packaged in program folder), menuModule (Packaged in program folder), pandas and plotly)
 
 #####################################################################################################################
-####################################### 24/3/25 Update Log #########################################################
+####################################### 24/3/25 Update Log1  ########################################################
 
 #todo
 Need to improve on the nG data, such as for the ranges, 
@@ -35,12 +35,27 @@ ______      _          _____      _                           _
                                               |_|        
 
 #####################################################################################################################
-####################################### 24/3/25 Update Log #########################################################
+####################################### 24/3/25 Update Log 2 ########################################################
 
 #todo
-
+check dataModule.py
+fix dataInterpreter(eg. show lowest and highest for ranges, and round mean/average salaries)
+create release v1.1 full release
 
 #done
 menuModule.py fully checked, all comments needed are present and code seems to be complete (8:40)
 dataInterpreter.py checked too, nothing looks bad on that part (8:42)
+fixed README.MD (list for nG data, removed option 12 and relabeled option 13 to option 12)
+
+#####################################################################################################################
+####################################### 24/3/25 Update Log 3 ########################################################
+
+final version? 
+#todo
+show high/low values
+
+#done
+dataModule.py fully checked, need to tested
+dataInterpreter should round data to 2 decimal places
+
 #####################################################################################################################
