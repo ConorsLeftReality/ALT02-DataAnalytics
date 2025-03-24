@@ -1,6 +1,6 @@
 Pandas Unique Data, used to make lists for user inputs
 
-generation of this file can be found at the bottom of dataModule.py, just make sure to back this one up somewhere else or under a different name
+Generation of this file can be found at the bottom of dataModule.py, just make sure to back this one up somewhere else or under a different name
 
 Job Titles
 
