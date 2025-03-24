@@ -10,10 +10,10 @@ Download all the files and keep them where they are in the folders
 
 dataInterpreter.py is the main file you run to get analytics on salaries.csv, which it will automatically clean and create salaries_cleaned.csv
 
-This program is able to be run on Graphical and Non-Graphical Operating Systems, as plotly runs in a browser and pandas can run in the commmand line.
+This program is able to be run on Graphical and Non-Graphical Operating Systems, as plotly runs in a browser and pandas can run in the command line.
 
 # **Mandatory Task Requirements:**
-Your program must sucessfully read in information from your external dataset
+Your program must successfully read in information from your external dataset
 
 Your data must be cleaned to make sure its in a usable format
 
@@ -21,11 +21,11 @@ Your program must display some statistical information about some of the data i.
 
 You create one graph based on your analysis of your chosen dataset (plotly)
 
-The user can choose which part of the dataset th get statistics about (User Defined Graphs?)
+The user can choose which part of the dataset the get statistics about (User Defined Graphs?)
 
 The user has a choice of what type of statistics they get (menu?)
 
-The program can present multiple graphs based on the users's choice (i am assuming at one time)
+The program can present multiple graphs based on the user's choice (i am assuming at one time)
 
 # **Non-Graphical Data to display:**
 
