@@ -8,8 +8,8 @@ import pandas as pd
 import plotly.express as px
 import time
 import os
-from Modules.dataModule import fileClean, dataInterprit_G, dataInterprit_nG
-from Modules.menuModule import Graphical_mainMenu, homeMenu, nonGraphical_mainMenu, clearScreen
+from Modules.dataModule import *
+from Modules.menuModule import *
 import webbrowser
 
 def clearScreen(): # who doesnt like a clean terminal
@@ -64,7 +64,6 @@ while exitProgram == False:
         clearScreen()
         print("Exiting program, thank you for using the Data Display Program!")
         exit()
-    
     # Please dont mark me down on this
     elif subMenuChoice == "3": 
         clearScreen()

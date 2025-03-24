@@ -3,17 +3,20 @@ import os
 import time
 
 def clearScreen(): # who doesnt like a clean terminal
+    print("\n=================================================\n")
     os.system('cls' if os.name == 'nt' else 'clear')
+    
 def logo():
-    print("______      _          _____      _                           _            ")
-    print("|  _  \    | |        |_   _|    | |                         | |           ")
-    print("| | | |__ _| |_ __ _    | | _ __ | |_ ___ _ __ _ __  _ __ ___| |_ ___ _ __ ")
-    print("| | | / _` | __/ _` |   | || '_ \| __/ _ | '__| '_ \| '__/ _ | __/ _ | '__|")
-    print("| |/ | (_| | || (_| |  _| || | | | ||  __| |  | |_) | | |  __| ||  __| |   ")
-    print("|___/ \__,_|\__\__,_|  \___|_| |_|\__\___|_|  | .__/|_|  \___|\__\___|_|   ")
-    print("                                              | |                          ")
-    print("                                              |_|                          ")
-    print("")
+    print(r"______      _          _____      _                           _            ")
+    print(r"|  _  \    | |        |_   _|    | |                         | |           ")
+    print(r"| | | |__ _| |_ __ _    | | _ __ | |_ ___ _ __ _ __  _ __ ___| |_ ___ _ __ ")
+    print(r"| | | / _` | __/ _` |   | || '_ \| __/ _ | '__| '_ \| '__/ _ | __/ _ | '__|")
+    print(r"| |/ | (_| | || (_| |  _| || | | | ||  __| |  | |_) | | |  __| ||  __| |   ")
+    print(r"|___/ \__,_|\__\__,_|  \___|_| |_|\__\___|_|  | .__/|_|  \___|\__\___|_|   ")
+    print(r"                                              | |                          ")
+    print(r"                                              |_|                          ")
+    print(r"")
+    
 def homeMenu():
     subMenuList = ["1","2","quit","3"]
     # Clear the screen
@@ -39,7 +42,7 @@ def homeMenu():
 
 def Graphical_mainMenu():
     # Makes List, string of 1 to 13 (range goes to nMax-1)
-    G_List = [str(i) for i in range(1, 14)]
+    G_List = [str(i) for i in range(1, 14)] + ["back"]
     # Clear the screen
     clearScreen()
     # Prints menu
@@ -58,6 +61,7 @@ def Graphical_mainMenu():
     print("10. Jobs within a user defined experience range")
     print("11. Jobs within a user defined country")
     print("12. Jobs within a user defined company size")
+    print("Or 'back' to return to main menu")
     
     menuSelection = input("Make a selection: ")
     # Check for valid selection, else re-prompt
@@ -67,7 +71,7 @@ def Graphical_mainMenu():
 
 def nonGraphical_mainMenu():
     # Makes List, same as comment on Graphical, but its for 1-16
-    nG_List = [str(i) for i in range(1, 17)]
+    nG_List = [str(i) for i in range(1, 17)] + ["back"]
     # clear the screen
     clearScreen()
     # print menu
@@ -92,6 +96,7 @@ def nonGraphical_mainMenu():
     print("14. Range of Pay by User Defined Country")
     print("15. Range of Pay by User Defined Title")
     print("16. Range of Pay by User Defined Experience\n")
+    print("Or 'back' to return to main menu")
     
     menuSelection_nG = input("Make a Selection: ")
     # Check for valid selection, else re-prompt

@@ -4,6 +4,11 @@ import plotly.express as px
 import time
 import os
 
+#clearScreen redefined because import module issues in thonny
+def clearScreen(): # who doesnt like a clean terminal
+    print("\n=================================================\n")
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 # variables used later on for displaying the jobs list, as there are a lot of job titles
 startIndex_global = 0 # originally starts at start of list
 batchSize = 5 # displays 5 at a time
@@ -29,131 +34,27 @@ countryDictionary = {
     'Andorra': 'AD', 'Hong Kong': 'HK', 'Central African Republic': 'CF', 'Thailand': 'TH', 'Iran': 'IR',
     'Bahamas': 'BS', 'Iraq': 'IQ', 'China': 'CN', 'Moldova': 'MD'
 }
-# Made by pandasUnique code at the bottom :)
-jobTitles_list = [
-    'Customer Success Manager', 'Engineer', 'Applied Scientist', 'Data Analyst', 
-    'Software Development Engineer', 'Research Scientist', 'Data Scientist', 
-    'Platform Engineer', 'Computational Biologist', 'AI Data Scientist', 
-    'Admin & Data Analyst', 'Cloud Engineer', 'Data Management Specialist', 
-    'Data Product Owner', 'Software Engineer', 'Machine Learning Engineer', 
-    'Associate', 'Data Engineer', 'Product Manager', 'Data Operations Engineer', 
-    'Business Intelligence Engineer', 'Research Engineer', 'Analytics Engineer', 
-    'Analyst', 'Actuarial Analyst', 'Manager', 'Architect', 'Software Developer', 
-    'Member of Technical Staff', 'BI Analyst', 'AI Engineer', 
-    'Data Governance Analyst', 'Developer', 'DevOps Engineer', 
-    'Business Intelligence Analyst', 'Site Reliability Engineer', 
-    'Computational Scientist', 'Data Management Analyst', 
-    'Data and Reporting Analyst', 'Solution Architect', 'Data Reporting Analyst', 
-    'Data Architect', 'Solutions Architect', 'Data Manager', 'Data Reporter', 
-    'Data Governance', 'Business Intelligence Developer', 'Solutions Engineer', 
-    'Database Administrator', 'Consultant', 'Product Analyst', 'Data Specialist', 
-    'Quantitative Developer', 'Research Assistant', 'BI Developer', 
-    'Quantitative Researcher', 'Product Designer', 'Machine Learning Scientist', 
-    'Research Associate', 'Product Owner', 'Insight Analyst', 'Statistician', 
-    'Engineering Manager', 'Data Analytics Manager', 'Data Modeler', 
-    'Systems Engineer', 'Data Platform Engineer', 'Technical Lead', 
-    'Bioinformatician', 'AI Researcher', 'Data Developer', 
-    'Quantitative Analyst', 'Head of AI', 'Lead Engineer', 'Prompt Engineer', 
-    'Data Visualization Analyst', 'Python Developer', 'Analytics Specialist', 
-    'Full Stack Developer', 'Head of Data', 'AI Governance Lead', 
-    'Director of Machine Learning', 'AI Architect', 'Enterprise Account Executive', 
-    'Backend Engineer', 'DataOps Engineer', 'Data Governance Specialist', 
-    'System Engineer', 'Data Visualization Engineer', 'AI Developer', 
-    'Data Governance Lead', 'Business Analyst', 'Tableau Developer', 
-    'Computer Vision Engineer', 'Account Executive', 'Product Specialist', 
-    'Data Governance Manager', 'Business Intelligence', 'Data Operations', 
-    'Data Strategist', 'Data Quality Specialist', 'Data and Reporting Professional', 
-    'Robotics Engineer', 'Cloud Database Engineer', 'Data Integration Engineer', 
-    'Principal Researcher', 'Research Analyst', 'AI Data Engineer', 
-    'ETL Developer', 'Bioinformatics Scientist', 'Full Stack Engineer', 
-    'Postdoctoral Fellow', 'Technology Integrator', 'Algorithm Developer', 
-    'AI Specialist', 'Data Integrator', 'Data Lead', 
-    'Business Intelligence Specialist', 'Encounter Data Management Professional', 
-    'Java Developer', 'Power BI Developer', 'AI Product Owner', 
-    'Principal Software Architect', 'Statistical Programmer', 
-    'Data Operations Specialist', 'Master Data Management', 
-    'Data Analytics Specialist', 'MLOps Engineer', 'Data Product Manager', 
-    'Security Researcher', 'AI Research Scientist', 'Data Operations Analyst', 
-    'Principal Statistical Programmer', 'Data Team Lead', 
-    'Data Infrastructure Engineer', 'Big Data Developer', 'BI Engineer', 
-    'Developer Advocate', 'Postdoctoral Researcher', 'Tech Lead', 
-    'Data Visualization Specialist', 'Scala Spark Developer', 
-    'Sales Development Representative', 'Machine Learning Researcher', 
-    'Power BI', 'AI Scientist', 'Staff Data Scientist', 'Application Developer', 
-    'Decision Scientist', 'Cloud Database Administrator', 
-    'AI Machine Learning Engineer', 'Data Integrity Specialist', 
-    'Power BI Specialist', 'Analytics Lead', 'GenAI Architect', 
-    'Lead Data Analysis', 'Data Management Associate', 'Data Integration Specialist', 
-    'Lead Analyst', 'Head of Machine Learning', 'Data Management Lead', 
-    'QA Engineer', 'Data Analytics Consultant', 'Data Quality Analyst', 
-    'Data Visualization Developer', 'Software Architect', 'Machine Learning Developer', 
-    'Data Strategy Lead', 'Data Scientist Associate', 'Data Quality Lead', 
-    'Data Analytics Lead', 'Business Intelligence Manager', 'Risk Analyst', 
-    'Marketing Science Partner', 'Data Reporting Specialist', 
-    'Clinical Data Operator', 'AI Lead', 'Machine Learning Specialist', 
-    'Research Data Manager', 'Technical Specialist', 'Applied Research Scientist', 
-    'Lead Data Management', 'Data Analytics Developer', 'Machine Learning Architect', 
-    'Machine Learning Lead', 'Stage', 'Technical Writer', 
-    'Data Quality Engineer', 'Data Integration Analyst', 
-    'Safety Data Management Specialist', 'Business Intelligence Lead', 
-    'Data Operations Manager', 'Big Data Analyst', 'Data Scientist Manager', 
-    'Pricing Analyst', 'Lead Data Engineer', 'AI Engineering Manager', 
-    'Backend Developer', 'Data Management Coordinator', 'Analytics Analyst', 
-    'Controls Engineer', 'Machine Learning Tech Lead', 
-    'Business Development Manager', 'Data Management Consultant', 
-    'Business Insights Manager', 'Power BI Administrator', 
-    'Data Integration Developer', 'Data Integrity Analyst', 
-    'Platform Data Engineer', 'Bear Robotics', 
-    'Principal Application Delivery Consultant', 'Chatbot Developer', 
-    'Artificial Intelligence Engineer', 'Data Governance Architect', 
-    'Power BI Consultant', 'Backend Software Engineer', 'AI Product Manager', 
-    'Data Operations Associate', 'ML Infrastructure Engineer', 
-    'Cloud Developer', 'Data Operations Lead', 'Fullstack Engineer', 
-    'Machine Learning Quality Engineer', 'Security Engineer', 
-    'Databricks Engineer', 'Infrastructure Engineer', 'Solution Engineer', 
-    'Big Data Engineer', 'Machine Learning Performance Engineer', 
-    'Data Analytics Associate', 'Power BI Architect', 
-    'Machine Learning Platform Engineer', 'AI Solution Architect', 
-    'Data Scientist Lead', 'Machine Vision Engineer', 
-    'Data Governance Engineer', 'Machine Learning Model Engineer', 
-    'Marketing Analyst', 'Data Management Manager', 
-    'Marketing Analytics Manager', 'Applied AI ML Lead', 
-    'Data Strategy Manager', 'Machine Learning Manager', 'Data Product Analyst', 
-    'Data Quality Manager', 'Elasticsearch Administrator', 
-    'Machine Learning Infrastructure Engineer', 'People Data Analyst', 
-    'Frontend Engineer', 'NLP Engineer', 'SAS Developer', 
-    'Data Analytics Team Lead', 'Machine Learning Modeler', 
-    'Data Integration Coordinator', 'AI Programmer', 
-    'Head of Business Intelligence', 'ETL Engineer', 'AI Research Engineer', 
-    'Business Intelligence Consultant', 'Robotics Software Engineer', 
-    'AI Software Engineer', 'Lead AI Engineer', 'AI Software Development Engineer', 
-    'Master Data Specialist', 'Consultant Data Engineer', 'Manager Data Management', 
-    'Director of Business Intelligence', 'Lead Data Scientist', 
-    'CRM Data Analyst', 'BI Data Analyst', 'Applied Data Scientist', 
-    'Data DevOps Engineer', 'Quantitative Research Analyst', 
-    'Lead Machine Learning Engineer', 'Machine Learning Research Engineer', 
-    'Data Analyst Lead', 'Data Pipeline Engineer', 'Lead Data Analyst', 
-    'Business Data Analyst', 'Marketing Data Scientist', 
-    'Deep Learning Engineer', 'Financial Data Analyst', 'Azure Data Engineer', 
-    'Principal Data Scientist', 'Staff Data Analyst', 
-    'Machine Learning Software Engineer', 'Applied Machine Learning Scientist', 
-    'Principal Machine Learning Engineer', 'Principal Data Engineer', 
-    'Staff Machine Learning Engineer', 'Business Intelligence Data Analyst', 
-    'Finance Data Analyst', 'Software Data Engineer', 'Compliance Data Analyst', 
-    'Cloud Data Engineer', 'Analytics Engineering Manager', 
-    'AWS Data Architect', 'Product Data Analyst', 
-    'Autonomous Vehicle Technician', 'Sales Data Analyst', 
-    'Applied Machine Learning Engineer', 'BI Data Engineer', 
-    'Deep Learning Researcher', 'Big Data Architect', 
-    'Computer Vision Software Engineer', 'Marketing Data Engineer', 
-    'Data Science Tech Lead', 'Marketing Data Analyst', 
-    'Principal Data Architect', 'Data Analytics Engineer', 
-    'Cloud Data Architect', 'Principal Data Analyst']
 
-def clearScreen(): # declutters
-    os.system('cls' if os.name == 'nt' else 'clear')
+# making jobTitle List not hardcoded
+jobTitles_list = []
+"""
+with open("job_titles.txt", "r") as file:
+    jobTitles_list = [line.strip() for line in file]
+"""
 
 def countryList():
+    i=0
+    countries_per_line=5
+    for country in countryDictionary:
+        i+=1
+        print(country,end="")
+        ## Print several countries per line
+        if (i % countries_per_line == 0):
+            print()
+        else:
+            print(", ",end="")
+            
+    """
     print("Netherlands, United States\nUnited Kingdom, Lithuania\nCanada, Spain\nGermany, Latvia\nBelgium, France\nSlovakia, Philippines\nIreland, Australia\nBrazil, India")
     print("Poland, Peru\nArgentina, Austria\nSwitzerland, New Zealand\nPortugal, Serbia\nFinland, Taiwan\nNorway, Ukraine\nEl Salvador, Ecuador\nChile, Dominican Republic")
     print("Mexico, Colombia\nMalta, Denmark\nIndonesia, Malaysia\nKosovo, Costa Rica\nJapan, Zambia\nPuerto Rico, Armenia\nSingapore, Luxembourg\nItaly, Cyprus")
@@ -161,6 +62,7 @@ def countryList():
     print("Turkey, Pakistan\nHonduras, Romania\nVenezuela, Algerian\nAmerican Samoa, United Arab Emirates\nSaudi Arabia, Oman\nBosnia and Herzegovina, Estonia")
     print("Vietnam, Gibraltar\nSlovenia, Mauritius\nRussia, Qatar\nGhana, Andorra\nHong Kong, Central African Republic\nThailand, Iran\nBahamas, Iraq\nChina, Moldova")
     return
+    """
 
 def experienceDisplay():
     print("EN. Entry-level / Junior\nMI.  Mid-level / Intermediate\nSE. Senior-level / Expert\nEX. Executive-level / Director")
@@ -189,7 +91,7 @@ def jobsListDisplay(batchSize, startIndex): # Batch Jobs display for nG data int
 #        while jobListDisplay_result == "more":
 #            jobListDisplay_result, startIndex = jobsListDisplay(5, startIndex)
 #        jobTitle = jobListDisplay_result
-
+    
 def loadAnimation(): # swag
     print(".")
     time.sleep(0.2)
@@ -250,13 +152,15 @@ def fileClean():
         print("Cleaning file...")
         df = df.dropna()
         df = df.drop_duplicates()
-        if 'salary_in_usd ' in df.columns:
-            df = df[df['salary_in_usd'] <= 400000] # salary doesnt go over 400k (i mean its possible but i dont want to get bad data)
-            df = df[df['salary_in_usd'] > 5000] # salary is over 5000 euro (we dont like child labour or negative salaries)
+        if 'salary_in_usd' in df.columns:
+            df = df[df['salary_in_usd'] <= 500000] # salary doesnt go over 400k (i mean its possible but i dont want to get bad data)
+            df = df[df['salary_in_usd'] > 10000] # salary is over 5000 euro (we dont like child labour or negative salaries)
         #making cleaned path
         cleanedPath = (originalPath[:-4] + "_cleaned.csv")
         df.to_csv(cleanedPath, index=False)
-        print("File cleaned and saved as " + cleanedPath)
+        # create jobTitles_list for later, reduces hard-coded data
+        global jobTitles_list
+        jobTitles_list = df['job_title'].unique()
         return "success", cleanedPath
 
 #################################################################################################################################################################
@@ -373,11 +277,9 @@ def dataInterprit_G(menuSelection, df):
         CompanySize = px.bar(AvgSal_CompanySize, x="job_title", y="salary_in_usd", title="Average Salary by Job Title within a User Defined Company Size (" + companySize + ")")
         CompanySize.show()
         loadAnimation()
-    elif menuSelection == "exit":
+    elif menuSelection == "back":
         clearScreen()
-        exitProgram = True
-        print("Exiting program, thank you for using the Data Display Program!")
-        exit()
+        print("Returning to menu")
     else:
         clearScreen()
         print("Invalid selection")
@@ -432,7 +334,7 @@ def dataInterprit_nG(menuSelection, df):
     elif menuSelection == "5":
         clearScreen()
         modeJob = df['job_title'].mode()
-        print("The Mode of Job Titles (Most Common) is " + str(modeJob))
+        print("The Mode of Job Titles (Most Common) is " + str(modeJob[0]))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "6":
@@ -445,7 +347,7 @@ def dataInterprit_nG(menuSelection, df):
     elif menuSelection == "7":
         clearScreen()
         modeLocationofCountry = df['company_location'].mode()
-        print("The Most common (mode) location for a Company is " + str(modeLocationofCountry))
+        print("The Most common (mode) location for a Company is " + str(modeLocationofCountry[0]))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "8":
@@ -453,9 +355,9 @@ def dataInterprit_nG(menuSelection, df):
         modeEmployeeResidence = df['employee_residence'].mode()[0]
         fullCountryName = [key for key, value in countryDictionary.items() if value == modeEmployeeResidence]
         if fullCountryName:
-            print("The most common (mode) country of employee residence is " + fullCountryName[0])
+            print("The most common (mode) country of employee residence is " + str(fullCountryName))
         else:
-            print("The most common (mode) country of employee residence is " + modeEmployeeResidence)
+            print("The most common (mode) country of employee residence is " + str(modeEmployeeResidence[0]))
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
     elif menuSelection == "9":
@@ -514,8 +416,10 @@ def dataInterprit_nG(menuSelection, df):
         # Checks if dataframe has any matching jobs
         if not dfFiltered_country.empty:
             country_salaryRange = (dfFiltered_country['salary_in_usd'].max() - dfFiltered_country['salary_in_usd'].min()).round(2)
-            print("The range from lowest to highest paying salary in "+ str(country) +" is $" + str(country_salaryRange), + "\nThe Highest paying salary is $" + str(dfFiltered_country['salary_in_usd'].max()) + "and the lowest paying salary is $" + str(dfFiltered_country['salary_in_usd'].min()))
+            clearScreen()
+            print("The range from lowest to highest paying salary in "+ str(country) +" is $" + str(country_salaryRange) + "\nThe Highest paying salary is $" + str(dfFiltered_country['salary_in_usd'].max()) + " and the lowest paying salary is $" + str(dfFiltered_country['salary_in_usd'].min()))
         else:
+            clearScreen()
             print("No jobs found for" + jobTitle)
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
@@ -531,6 +435,7 @@ def dataInterprit_nG(menuSelection, df):
         # Checks if dataframe has any matching jobs
         if not dfFiltered_job.empty:
             job_salaryRange = (dfFiltered_job['salary_in_usd'].max() - dfFiltered_job['salary_in_usd'].min()).round(2)
+            clearScreen()
             print("The range from lowest to highest paying salary for the job title, "+ str(jobTitle)+ " is $"+ str(job_salaryRange) + "\nThe Highest paying job is $" + str((dfFiltered_job['salary_in_usd'].max())) + " and the lowest paying job is $" + str(dfFiltered_job['salary_in_usd'].min()))
         else:
             print("No jobs found for" + jobTitle)
@@ -544,16 +449,15 @@ def dataInterprit_nG(menuSelection, df):
         # Checks if dataframe has any matching experience levels
         if not dfFiltered_EL.empty:
             EL_salaryRange = (dfFiltered_EL['salary_in_usd'].max() - dfFiltered_EL['salary_in_usd'].min()).round(2)
+            clearScreen()
             print("The range from lowest to highest paying salary for the Experience Level, "+ str(experienceLevel)+ " is $"+ str(EL_salaryRange) + "\nThe Highest paying salary was $" + str(dfFiltered_EL['salary_in_usd'].max()) + "and the Lowest paying salary was $" + str(dfFiltered_EL['salary_in_usd'].min()))
         else:
             print("No jobs found for" + jobTitle)
         print("\nReturning to menu in 8 seconds...")
         time.sleep(8)
-    elif menuSelection == "exit":
+    elif menuSelection == "back":
         clearScreen()
-        exitProgram = True
-        print("Exiting program, thank you for using the Data Display Program!")
-        exit()
+        print("Returning to menu")
     else:
         clearScreen()
         print("Invalid selection")
